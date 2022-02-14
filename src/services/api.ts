@@ -1,8 +1,13 @@
-import axios from "axios";
+import axios from 'axios';
+import openSocket from 'socket.io-client';
+
+const baseURL = process.env.REACT_APP_BACKEND_URL;
+
+const socket = openSocket();
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL,
+  baseURL,
   withCredentials: true,
 });
 
-export default api;
+export { api, baseURL, socket };
