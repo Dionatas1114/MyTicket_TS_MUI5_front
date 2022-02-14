@@ -1,8 +1,7 @@
-import React, { FormEvent, useState } from 'react';
+import React from 'react';
 
 import {
   Box,
-  Link,
   Grid,
   Avatar,
   TextField,
@@ -14,28 +13,20 @@ import {
 } from '@mui/material';
 
 import LoadingButton from '@mui/lab/LoadingButton';
-
-import {
-  PersonAddAltRounded,
-  Visibility,
-  VisibilityOff,
-} from '@mui/icons-material';
+import { PersonAddAltRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { Copyright } from '../../components';
-
-interface State {
-  showPassword: boolean;
-}
+import { Copyright, ComponentLink } from '../../components';
+import { i18n } from '../../translate/i18n';
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const [values, setValues] = useState<State>({
+const SignUp = () => {
+  const [values, setValues] = React.useState<{ showPassword: boolean }>({
     showPassword: false,
   });
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -74,21 +65,16 @@ export default function SignIn() {
             <PersonAddAltRounded fontSize="medium" />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            {i18n.t('signup.title')}
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
               id="name"
               name="name"
-              label="Name"
+              label={i18n.t('signup.form.name')}
               autoComplete="name"
               autoFocus
             />
@@ -98,17 +84,16 @@ export default function SignIn() {
               fullWidth
               id="email"
               name="email"
-              label="Email Address"
+              label={i18n.t('signup.form.email')}
               autoComplete="email"
             />
             <TextField
-              variant="outlined"
               margin="normal"
               required
               fullWidth
               id="password"
               name="password"
-              label="Password"
+              label={i18n.t('signup.form.password')}
               type={values.showPassword ? 'text' : 'password'}
               autoComplete="current-password"
               InputProps={{
@@ -129,18 +114,14 @@ export default function SignIn() {
               disabled={false}
               sx={{ mt: 2, mb: 2 }}
             >
-              Sign In
+              {i18n.t('signup.buttons.submit')}
             </LoadingButton>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+                {/* <ComponentLink to="/" text="Forgot password?" /> */}
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {'Do You have an account? Sign in'}
-                </Link>
+                <ComponentLink to="/" text={i18n.t('signup.buttons.login')} />
               </Grid>
             </Grid>
           </Box>
@@ -149,4 +130,6 @@ export default function SignIn() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default SignUp;
