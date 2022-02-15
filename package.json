@@ -6,6 +6,9 @@
   "author": "Dionatas Lazzari <sem.dionatas@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@devexpress/dx-react-chart": "^3.0.0",
+    "@devexpress/dx-react-chart-material-ui": "^3.0.0",
+    "@devexpress/dx-react-core": "^3.0.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.3.1",
@@ -36,7 +39,6 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-toastify": "^8.1.0",
-    "recharts": "^2.1.8",
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
     "socket.io-client": "^4.4.1",
