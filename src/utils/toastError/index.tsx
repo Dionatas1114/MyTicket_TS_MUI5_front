@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
-import { i18n } from '../../translate/i18n';
+
+import { i18n } from 'translate/i18n';
 
 export default function toastError(err: any) {
   const errorMsg = err.response?.data?.error;

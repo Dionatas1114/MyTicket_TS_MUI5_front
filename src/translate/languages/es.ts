@@ -33,7 +33,7 @@ const messages = {
           success: '¡Inicio de sesión exitoso!',
         },
       },
-      dashboard: {
+      mainPage: {
         charts: {
           perDay: {
             title: 'Tickets hoy: ',

@@ -19,13 +19,13 @@ const ComponentLink = (props: ComponentLinkProps) => {
   const { color, href, text, to } = props;
   return (
     <CustomLink
+      {...props}
       component={RouterLink}
       underline="hover"
       variant="body2"
       href={href}
       color={color}
       to={to}
-      {...props}
     >
       {text}
     </CustomLink>

@@ -1,8 +1,8 @@
 import { useState, useEffect, useReducer, useContext } from 'react';
 
-import { api, socket } from '../../services/api';
-import { AuthContext } from '../../context/Auth';
-import toastError from '../../utils/toastError';
+import { api, socket } from 'services/api';
+import { AuthContext } from 'context/Auth';
+import toastError from 'utils/toastError';
 
 const reducer = (state: any, action: any) => {
   if (action.type === 'LOAD_WHATSAPPS') {
