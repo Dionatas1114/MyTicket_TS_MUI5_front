@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Container, Grid } from '@mui/material';
 import { Calendar, Copyright } from 'components';
@@ -9,7 +9,7 @@ const MainPage = () => {
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       {/* <Toolbar /> */}
       <Grid container spacing={3}>
-        <Grid item md={8} lg={8}>
+        <Grid item md={8} lg={7}>
           <Chart />
         </Grid>
         <Grid item md={4} lg={4}>

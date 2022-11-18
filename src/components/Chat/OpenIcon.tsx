@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import { FileCopyOutlined, Save, Print, Share, Edit } from '@mui/icons-material';

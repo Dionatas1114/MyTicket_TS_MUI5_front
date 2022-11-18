@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { AppBar, Box, IconButton, Toolbar, Menu, MenuItem } from '@mui/material';
 import { MoreVert, Search } from '@mui/icons-material';
@@ -20,14 +20,14 @@ const ChatAppBar = () => {
     <AppBar position="sticky" sx={{ top: 'auto', bottom: 0 }}>
       <Toolbar>
         <SearchBar />
-        {/* <IconButton color="inherit" aria-label="open drawer" onClick={handleClick}>
+        <IconButton color="inherit" aria-label="open drawer" onClick={handleClick}>
           <Search />
         </IconButton>
 
         <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
           <MenuItem onClick={handleClose}>My account</MenuItem>
           <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu> */}
+        </Menu>
         <OpenIcon />
         <Box sx={{ flexGrow: 1 }} />
         <IconButton color="inherit">
