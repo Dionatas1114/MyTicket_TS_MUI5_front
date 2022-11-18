@@ -1,29 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
+import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { TextField, TextFieldProps } from '@mui/material';
 
-import { CalendarPicker, LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
-
-import { Switch, TextField, TextFieldProps } from '@mui/material';
+import locale from '@/../utils/Locale';
 
 export default function Calendar() {
-  const adapter = new AdapterDateFns();
-
-  const [date, setDate] = React.useState<Date | null>(adapter.date());
-  const [values, setValues] = React.useState<{ showToolbar: boolean }>({ showToolbar: false });
-
-  const handleClickShowToolbar = () => {
-    setValues({ showToolbar: !values.showToolbar });
-  };
+  const [date, setDate] = React.useState<Date | null>(new AdapterDateFns().date());
+  const ptBR = locale('ptBR');
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Switch
-        checked={values.showToolbar}
-        onChange={handleClickShowToolbar}
-        inputProps={{ 'aria-label': 'controlled' }}
-      />
-      {/* <CalendarPicker date={date} onChange={(newDate) => setDate(newDate)} /> */}
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
       <StaticDatePicker
         displayStaticWrapperAs="desktop"
         value={date}
@@ -35,12 +23,7 @@ export default function Calendar() {
         )}
         dayOfWeekFormatter={(day: String) => `${day}.`}
         toolbarFormat="eee, dd MMMM"
-        showToolbar={values.showToolbar}
-        componentsProps={{
-          actionBar: {
-            actions: ['today'],
-          },
-        }}
+        // showToolbar
       />
     </LocalizationProvider>
   );
