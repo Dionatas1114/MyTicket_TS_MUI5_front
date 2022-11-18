@@ -12,12 +12,12 @@ import {
   InputAdornment,
 } from '@mui/material';
 
-import LoadingButton from '@mui/lab/LoadingButton';
 import { PersonAddAltRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { LoadingButton } from '@mui/lab';
 
-import { Copyright, ComponentLink } from '../../components';
-import { i18n } from '../../translate/i18n';
+import { Copyright, ComponentLink } from 'components';
+import { i18n } from 'translate/i18n';
 
 const theme = createTheme();
 

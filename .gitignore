@@ -38,9 +38,10 @@ bower_components
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directories
+# Dependency & build directories
 node_modules/
 jspm_packages/
+build/
 
 # TypeScript v1 declaration files
 typings/
@@ -50,7 +51,7 @@ typings/
 
 # Optional npm cache directory
 .npm
-.tmpnodejsnpm-cache/
+tmpnodejsnpm-cache/
 
 # Optional eslint cache
 .eslintcache

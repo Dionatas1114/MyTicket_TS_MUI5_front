@@ -33,7 +33,7 @@ const messages = {
           success: 'Login efetuado com sucesso!',
         },
       },
-      dashboard: {
+      mainPage: {
         charts: {
           perDay: {
             title: 'Tickets hoje: ',

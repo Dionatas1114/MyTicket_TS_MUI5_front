@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import toastError from '../../utils/toastError';
+
+import toastError from 'utils/toastError';
 
 export function useLocalStorage(key: any, initialValue: any) {
   const [storedValue, setStoredValue] = useState(() => {
@@ -14,8 +15,7 @@ export function useLocalStorage(key: any, initialValue: any) {
 
   const setValue = (value: any) => {
     try {
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
 
       setStoredValue(valueToStore);
 
