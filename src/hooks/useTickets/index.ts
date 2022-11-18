@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 
-import { api } from '../../services/api';
-import { AuthContext } from '../../context/Auth';
-import toastError from '../../utils/toastError';
+import { api } from 'services/api';
+import { AuthContext } from 'context/Auth';
+import toastError from 'utils/toastError';
 
 interface Tickets {
   searchParam: any;

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Badge, Divider, List, ListSubheader } from '@mui/material';
 import {
   Dashboard,
@@ -9,8 +11,8 @@ import {
   Queue,
 } from '@mui/icons-material';
 
-import Link from './BarLink';
-import { i18n } from '../../translate/i18n';
+import Link from './LeftBarLink';
+import { i18n } from 'translate/i18n';
 
 const connectionWarning = false;
 const list = 'mainDrawer.listItems';

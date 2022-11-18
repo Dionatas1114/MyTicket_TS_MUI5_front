@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { toast } from 'react-toastify';
-import { i18n } from '../../translate/i18n';
-import { api, socket } from '../../services/api';
-import toastError from '../../utils/toastError';
+
+import { api, socket } from 'services/api';
+import { i18n } from 'translate/i18n';
+import toastError from 'utils/toastError';
 
 const useAuth = () => {
   const navigateTo = useNavigate();

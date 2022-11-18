@@ -12,27 +12,33 @@ import {
   InputAdornment,
 } from '@mui/material';
 
-import LoadingButton from '@mui/lab/LoadingButton';
-
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import LoadingButton from '@mui/lab/LoadingButton';
 
-import { Copyright, ComponentLink } from '../../components';
-
-import { i18n } from '../../translate/i18n';
+import { Copyright, ComponentLink } from 'components';
+import { i18n } from 'translate/i18n';
+import { api } from '../../services/api';
 
 const theme = createTheme();
 
 const SignIn = () => {
   const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const userData = {
       email: data.get('email'),
       password: data.get('password'),
-    });
+    };
+    console.log(userData);
+
+    try {
+      await api.post('/auth/login', userData);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleClickShowPassword = () => {
