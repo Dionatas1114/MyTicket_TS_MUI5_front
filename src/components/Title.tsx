@@ -19,7 +19,7 @@ const Title = (props: TitleProps) => {
       variant={variant}
       color={color}
       align={align}
-      {...gutterBottom}
+      {...(gutterBottom as any)}
     >
       {children}
     </Typography>
