@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import 'react-toastify/dist/ReactToastify.css';
-import { ThemeProvider } from '@mui/material/styles';
 
-import { persistor, store } from './store';
-import Routes from './routes';
-
-import { createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import * as locales from '@mui/material/locale';
+
+// import { persistor, store } from './store';
+import Routes from './routes';
 
 type SupportedLocales = keyof typeof locales;
 
-const [locale, setLocale] = useState<SupportedLocales>('enUS');
+const [locale, setLocale] = React.useState<SupportedLocales>('ptBR');
 
 export const Theme = createTheme(
   {
@@ -33,10 +32,10 @@ export const Theme = createTheme(
   // locale
 );
 
-useEffect(() => {
-  const i18nlocale = localStorage.getItem('i18nextLng');
+React.useEffect(() => {
+  const browserLocale = localStorage.getItem('i18nextLng');
+  console.log(browserLocale);
 
-  const browserLocale = i18nlocale!.substring(0, 2) + i18nlocale!.substring(3, 5);
-
-  if (browserLocale === 'ptBR') setLocale('ptBR');
+  if (browserLocale === 'pt') setLocale('ptBR');
+  console.log(locale);
 }, []);

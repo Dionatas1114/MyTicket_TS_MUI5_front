@@ -18,7 +18,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { Copyright, ComponentLink } from 'components';
 import { i18n } from 'translate/i18n';
-import { api } from '../../services/api';
+import { api } from 'services/api';
 
 const theme = createTheme();
 

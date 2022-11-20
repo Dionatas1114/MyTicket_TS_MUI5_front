@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { Container, Grid } from '@mui/material';
-import { Calendar, Copyright } from 'components';
-import Chart from './Chart';
+import { Chart, Calendar, Copyright } from 'components';
 
 const MainPage = () => {
   return (

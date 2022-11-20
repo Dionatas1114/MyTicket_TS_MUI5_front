@@ -4,7 +4,7 @@ import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField, TextFieldProps } from '@mui/material';
 
-import locale from '@/../utils/Locale';
+import locale from 'utils/Locale';
 
 export default function Calendar() {
   const [date, setDate] = React.useState<Date | null>(new AdapterDateFns().date());
