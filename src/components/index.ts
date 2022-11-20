@@ -1,9 +1,22 @@
 import Dashboard from './Dashboard';
-import Title from './Title';
 import Calendar from './Calendar';
 import Chat from './Chat';
-import CustomMenuItem from './CustomMenuItem';
-import { ComponentLink, HrefLink } from './Link';
-import Copyright from './Copyright';
+import Chart from './Chart';
+import Title from './Others/Title';
+import { ComponentLink, HrefLink } from './Others/Link';
+import CustomMenuItem from './Others/CustomMenuItem';
+import CustomTooltip from './Others/CustomTooltip';
+import Copyright from './Others/Copyright';
 
-export { Dashboard, Title, Calendar, Chat, CustomMenuItem, ComponentLink, HrefLink, Copyright };
+export {
+  Dashboard,
+  Calendar,
+  Chat,
+  Chart,
+  Title,
+  ComponentLink,
+  HrefLink,
+  CustomMenuItem,
+  CustomTooltip,
+  Copyright,
+};

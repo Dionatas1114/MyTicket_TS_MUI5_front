@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, HrefLink } from '.';
+import { Title, HrefLink } from '..';
 
 interface CopyrightProps {
   children?: JSX.Element | JSX.Element[];
