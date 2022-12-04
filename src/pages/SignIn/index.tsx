@@ -1,10 +1,9 @@
 import React from 'react';
-
+import { Formik, Form, Field } from 'formik';
 import {
   Box,
   Grid,
   Avatar,
-  TextField,
   Container,
   IconButton,
   Typography,
@@ -16,33 +15,29 @@ import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import { Copyright, ComponentLink } from 'components';
+import { Copyright, ComponentLink, TextFieldInput } from 'components';
 import { i18n } from 'translate/i18n';
-import { api } from 'services/api';
 
-const theme = createTheme();
+import { marginTop } from 'utils/functions/BrowserInfo';
+
+import useAuth from 'hooks/useAuth';
 
 const SignIn = () => {
+  const { handleLogin } = useAuth();
+  const theme = createTheme();
+
   const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
+
+  const handleClickShowPassword = () => {
+    setValues({ showPassword: !values.showPassword });
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const userData = {
-      email: data.get('email'),
-      password: data.get('password'),
-    };
-    console.log(userData);
 
-    try {
-      await api.post('/auth/login', userData);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleClickShowPassword = () => {
-    setValues({ showPassword: !values.showPassword });
+    const loginStatus = await handleLogin(data);
+    console.log(loginStatus);
   };
 
   return (
@@ -51,7 +46,7 @@ const SignIn = () => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -61,8 +56,8 @@ const SignIn = () => {
             sx={{
               m: 1,
               bgcolor: 'primary.light',
-              width: 60,
-              height: 60,
+              width: 70,
+              height: 70,
             }}
           >
             {/*change 'AccountCircle' to personal avatar*/}
@@ -72,25 +67,23 @@ const SignIn = () => {
             {i18n.t('login.title')}
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
+            <TextFieldInput
               id="email"
               name="email"
-              label={i18n.t('login.form.email')}
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
               required
-              fullWidth
+              autoComplete="email"
+              label={i18n.t('login.form.email')}
+              // helperText={values.showPassword ? i18n.t('login.toasts.error.email') : null}
+              // error={values.showPassword}
+            />
+            <TextFieldInput
               id="password"
               name="password"
-              label={i18n.t('login.form.password')}
-              type={values.showPassword ? 'text' : 'password'}
+              required
               autoComplete="current-password"
+              type={values.showPassword ? 'text' : 'password'}
+              label={i18n.t('login.form.password')}
+              helperText={i18n.t('login.toasts.error.password')}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -121,7 +114,7 @@ const SignIn = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 6, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

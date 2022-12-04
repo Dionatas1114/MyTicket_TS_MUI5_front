@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Formik, Form, Field } from 'formik';
 import {
   Box,
   Grid,
@@ -19,27 +19,26 @@ import { LoadingButton } from '@mui/lab';
 import { Copyright, ComponentLink } from 'components';
 import { i18n } from 'translate/i18n';
 
-const theme = createTheme();
+import { marginTop } from 'utils/functions/BrowserInfo';
+
+import useAuth from 'hooks/useAuth';
 
 const SignUp = () => {
-  const [values, setValues] = React.useState<{ showPassword: boolean }>({
-    showPassword: false,
-  });
+  const { handleSignUp } = useAuth();
+  const theme = createTheme();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      name: data.get('name'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
 
   const handleClickShowPassword = () => {
-    setValues({
-      showPassword: !values.showPassword,
-    });
+    setValues({ showPassword: !values.showPassword });
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    const signUpStatus = await handleSignUp(data);
+    console.log(data);
   };
 
   return (
@@ -48,7 +47,7 @@ const SignUp = () => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 6,
+            marginTop,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -58,11 +57,13 @@ const SignUp = () => {
             sx={{
               m: 1,
               bgcolor: 'primary.dark',
-              width: 60,
-              height: 60,
+              width: 70,
+              height: 70,
             }}
           >
-            <PersonAddAltRounded fontSize="medium" />
+            {/* //TODO personal avatar:
+            {2 > 3 ? <AccountCircle /> : null} */}
+            <PersonAddAltRounded fontSize="large" />
           </Avatar>
           <Typography component="h1" variant="h5">
             {i18n.t('signup.title')}
@@ -96,6 +97,7 @@ const SignUp = () => {
               label={i18n.t('signup.form.password')}
               type={values.showPassword ? 'text' : 'password'}
               autoComplete="current-password"
+              helperText={i18n.t('login.toasts.error.password')}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
