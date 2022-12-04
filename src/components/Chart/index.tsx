@@ -7,26 +7,21 @@ import { Paper, Switch } from '@mui/material';
 import { Title } from 'components';
 import { i18n } from 'translate/i18n';
 
-function createData(time: string, amount?: number) {
-  return { time, amount };
+function initialChartData() {
+  const list = [];
+  for (let i = 8; i <= 19; i++) {
+    list.push(i.toString() + 'h');
+  }
+  return list.map((time) => {
+    return { time, amount: 0 };
+  });
 }
-
-// 08h - 19h
-
-const chartData = [
-  createData('00h', 0),
-  createData('03h', 3),
-  createData('06h', 6),
-  createData('09h', 2),
-  createData('12h', 12),
-  createData('15h', 2),
-  createData('18h', 2),
-  createData('21h', 5),
-  createData('24h', undefined),
-];
 
 const Chart = () => {
   const theme = useTheme();
+
+  const [chartData, setChartData] = React.useState(initialChartData());
+
   const [values, setValues] = React.useState<{ showCartesianGrid: boolean }>({
     showCartesianGrid: false,
   });
