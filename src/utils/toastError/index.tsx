@@ -4,6 +4,7 @@ import { i18n } from 'translate/i18n';
 
 export default function toastError(err: any) {
   const errorMsg = err.response?.data?.error;
+
   if (errorMsg) {
     if (i18n.exists(`backendErrors.${errorMsg}`)) {
       toast.error(i18n.t(`backendErrors.${errorMsg}`), {
@@ -15,6 +16,6 @@ export default function toastError(err: any) {
       });
     }
   } else {
-    toast.error('An error occurred!');
+    toast.error(err.message);
   }
 }

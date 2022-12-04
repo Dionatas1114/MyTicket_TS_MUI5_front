@@ -1,38 +1,45 @@
-import React, { createContext } from 'react';
+import React from 'react';
 
 import useAuth from 'hooks/useAuth';
 
 interface User {
-  id?: any;
-  name?: any;
-  email?: any;
-  customer?: any;
+  id?: number;
+  name?: string;
+  email?: string;
+  customer?: string;
 }
 
 interface AuthProps {
-  token: string | undefined;
-  setToken: React.Dispatch<string>;
+  loading: boolean;
+  isAuth: boolean;
+  // token: string | undefined;
+  // setToken: React.Dispatch<string>;
+  // handleLogin: (data: FormData) => Promise<boolean>;
   user?: User;
 }
 
 const DEFAULT_VALUE: AuthProps = {
-  token: undefined,
-  setToken: () => {},
+  loading: false,
+  isAuth: false,
+  // token: undefined,
+  // setToken: () => {},
+  // handleLogin: ({email: '', password: ''}) => {return false},
+  user: {
+    id: undefined,
+    name: '',
+    email: '',
+    customer: '',
+  },
 };
 
-const AuthContext = createContext(DEFAULT_VALUE);
+const AuthContext = React.createContext(DEFAULT_VALUE);
 
 const AuthProvider = (children: React.ReactNode) => {
-  const [token, setToken] = React.useState(DEFAULT_VALUE.token);
-  // const { loading, user, isAuth, handleLogin, handleLogout } = useAuth();
+  // const [token, setToken] = React.useState(DEFAULT_VALUE.token);
 
-  // return (
-  //   <AuthContext.Provider
-  //     value={{ loading, user, isAuth, handleLogin, handleLogout }}
-  //   >
-  //     {children}
-  //   </AuthContext.Provider>
-  // );
+  const { loading, user, isAuth } = useAuth();
+
+  return <AuthContext.Provider value={{ loading, user, isAuth }}>{children}</AuthContext.Provider>;
 };
 
 export { AuthContext, AuthProvider };

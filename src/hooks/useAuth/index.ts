@@ -6,6 +6,12 @@ import { api, socket } from 'services/api';
 import { i18n } from 'translate/i18n';
 import toastError from 'utils/toastError';
 
+interface User {
+  name: string;
+  email: string;
+  password: string;
+}
+
 const useAuth = () => {
   const navigateTo = useNavigate();
   const [isAuth, setIsAuth] = useState(false);
@@ -81,22 +87,55 @@ const useAuth = () => {
     };
   }, [user]);
 
-  const handleLogin = async (userData: any) => {
-    setLoading(true);
+  const handleSignUp = async (data: FormData) => {
+    const userData = {
+      name: data.get('name'),
+      email: data.get('email'),
+      password: data.get('password'),
+    };
+    console.log(userData);
 
     try {
-      const { data } = await api.post('/auth/login', userData);
-      localStorage.setItem('token', JSON.stringify(data.token));
-      api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-      setUser(data.user);
-      setIsAuth(true);
-      toast.success(i18n.t('auth.toasts.success'));
-      navigateTo('/tickets');
-      setLoading(false);
+      await api.post('/auth/signup', userData);
+      toast.success(i18n.t('signup.toasts.success'));
+      navigateTo('/login');
     } catch (err) {
       toastError(err);
-      setLoading(false);
+      throw new Error(err.message);
     }
+  };
+
+  const handleLogin = async (data: FormData) => {
+    const userData = {
+      email: data.get('email'),
+      password: data.get('password'),
+    };
+    console.log(userData);
+
+    try {
+      await api.post('/auth/login', userData);
+      toast.success(i18n.t('auth.toasts.success'));
+    } catch (err) {
+      toastError(err);
+      throw new Error(err.message);
+    }
+    return true; // success
+
+    // setLoading(true);
+
+    // try {
+    //   const { data } = await api.post('/auth/login', userData);
+    //   localStorage.setItem('token', JSON.stringify(data.token));
+    //   api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+    //   setUser(data.user);
+    //   setIsAuth(true);
+    //   toast.success(i18n.t('auth.toasts.success'));
+    //   navigateTo('/tickets');
+    //   setLoading(false);
+    // } catch (err) {
+    //   toastError(err);
+    //   setLoading(false);
+    // }
   };
 
   const handleLogout = async () => {
@@ -116,7 +155,7 @@ const useAuth = () => {
     }
   };
 
-  return { isAuth, user, loading, handleLogin, handleLogout };
+  return { isAuth, user, loading, handleSignUp, handleLogin, handleLogout };
 };
 
 export default useAuth;
