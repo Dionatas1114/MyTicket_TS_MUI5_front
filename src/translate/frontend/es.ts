@@ -14,7 +14,7 @@ const messages = {
           fail: 'Error creando el usuario. Verifica la data reportada.',
           error: {
             name: `El nombre debe tener entre ${userNameMinLength} y ${userNameMaxLength} characters`,
-            email: 'Email',
+            email: 'Email inválido',
             password: `La contraseña debe tener entre ${passwMinLength} y ${passwMaxLength} characteres`,
           },
         },
@@ -25,6 +25,9 @@ const messages = {
         },
         buttons: {
           submit: 'Regístrate',
+        },
+        links: {
+          forgotPassword: '¿Has olvidado tu contraseña?',
           login: '¿Ya tienes una cuenta? ¡Inicia sesión!',
         },
       },
@@ -32,7 +35,7 @@ const messages = {
         title: 'Inicio de Sesión',
         toasts: {
           error: {
-            email: 'Email',
+            email: 'Email inválido',
             password: `La contraseña debe tener entre ${passwMinLength} y ${passwMaxLength} characteres`,
           },
         },
@@ -42,6 +45,29 @@ const messages = {
         },
         buttons: {
           submit: 'Ingresa',
+        },
+        links: {
+          forgotPassword: '¿Has olvidado tu contraseña?',
+          register: '¿No tienes cuenta? ¡Regístrate!',
+        },
+      },
+      forgotPassword: {
+        title: 'Olvidé la contraseña',
+        toasts: {
+          success: 'Contraseña temporal enviada al correo ingresado',
+          fail: 'Error al enviar la contraseña temporal al correo electrónico ingresado',
+          error: {
+            email: 'Email inválido',
+          },
+        },
+        form: {
+          email: 'Email',
+        },
+        buttons: {
+          submit: 'Solicitar',
+        },
+        links: {
+          login: '¿Ya tienes una cuenta? ¡Inicia sesión!',
           register: '¿No tienes cuenta? ¡Regístrate!',
         },
       },
