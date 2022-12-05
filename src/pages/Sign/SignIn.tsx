@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import {
   Box,
   Grid,
@@ -106,10 +106,10 @@ const SignIn = () => {
             </LoadingButton>
             <Grid container>
               <Grid item xs>
-                <ComponentLink to="/forgot-password" text={i18n.t('login.links.forgotPassword')} />
+                {/* <ComponentLink to="/" text="Forgot password?" /> */}
               </Grid>
               <Grid item>
-                <ComponentLink to="/signup" text={i18n.t('login.links.register')} />
+                <ComponentLink to="/signup" text={i18n.t('login.buttons.register')} />
               </Grid>
             </Grid>
           </Box>
