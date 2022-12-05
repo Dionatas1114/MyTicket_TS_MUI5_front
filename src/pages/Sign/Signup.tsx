@@ -1,9 +1,10 @@
 import React from 'react';
-// import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import {
   Box,
   Grid,
   Avatar,
+  TextField,
   Container,
   IconButton,
   Typography,
@@ -11,20 +12,20 @@ import {
   InputAdornment,
 } from '@mui/material';
 
-import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
+import { PersonAddAltRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import LoadingButton from '@mui/lab/LoadingButton';
+import { LoadingButton } from '@mui/lab';
 
-import { Copyright, ComponentLink, TextFieldInput } from 'components';
+import { Copyright, ComponentLink } from 'components';
 import { i18n } from 'translate/i18n';
 
 import { marginTop } from 'utils/functions/BrowserInfo';
 
 import useAuth from 'hooks/useAuth';
 
-const SignIn = () => {
+const SignUp = () => {
   const theme = createTheme();
-  const { handleLogin } = useAuth();
+  const { handleSignUp } = useAuth();
 
   const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
 
@@ -36,8 +37,8 @@ const SignIn = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const loginStatus = await handleLogin(data);
-    console.log(loginStatus);
+    const signUpStatus = await handleSignUp(data);
+    console.log(data);
   };
 
   return (
@@ -55,34 +56,47 @@ const SignIn = () => {
           <Avatar
             sx={{
               m: 1,
-              bgcolor: 'primary.light',
+              bgcolor: 'primary.dark',
               width: 70,
               height: 70,
             }}
           >
-            {/*change 'AccountCircle' to personal avatar*/}
-            {2 > 3 ? <AccountCircle /> : null}
+            {/* //TODO personal avatar:
+            {2 > 3 ? <AccountCircle /> : null} */}
+            <PersonAddAltRounded fontSize="large" />
           </Avatar>
           <Typography component="h1" variant="h5">
-            {i18n.t('login.title')}
+            {i18n.t('signup.title')}
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextFieldInput
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              name="name"
+              label={i18n.t('signup.form.name')}
+              autoComplete="name"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
               id="email"
               name="email"
-              required
+              label={i18n.t('signup.form.email')}
               autoComplete="email"
-              label={i18n.t('login.form.email')}
-              // helperText={values.showPassword ? i18n.t('login.toasts.error.email') : null}
-              // error={values.showPassword}
             />
-            <TextFieldInput
+            <TextField
+              margin="normal"
+              required
+              fullWidth
               id="password"
               name="password"
-              required
-              autoComplete="current-password"
+              label={i18n.t('signup.form.password')}
               type={values.showPassword ? 'text' : 'password'}
-              label={i18n.t('login.form.password')}
+              autoComplete="current-password"
               helperText={i18n.t('login.toasts.error.password')}
               InputProps={{
                 endAdornment: (
@@ -102,22 +116,22 @@ const SignIn = () => {
               disabled={false}
               sx={{ mt: 2, mb: 2 }}
             >
-              {i18n.t('login.buttons.submit')}
+              {i18n.t('signup.buttons.submit')}
             </LoadingButton>
             <Grid container>
               <Grid item xs>
-                <ComponentLink to="/forgot-password" text={i18n.t('login.links.forgotPassword')} />
+                {/* <ComponentLink to="/" text="Forgot password?" /> */}
               </Grid>
               <Grid item>
-                <ComponentLink to="/signup" text={i18n.t('login.links.register')} />
+                <ComponentLink to="/" text={i18n.t('signup.buttons.login')} />
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 6, mb: 4 }} />
+        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
 };
 
-export default SignIn;
+export default SignUp;

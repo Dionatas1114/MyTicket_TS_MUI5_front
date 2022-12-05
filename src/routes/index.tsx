@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import SignIn from 'pages/SignIn';
 import SignUp from 'pages/Signup';
+import ForgotPassword from 'pages/Sign/ForgotPassword';
 import MainPage from 'pages/MainPage';
 import Tickets from 'pages/Tickets';
 import Contacts from 'pages/Contacts';
@@ -19,6 +20,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/*" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="dash" element={<Dashboard />}>
         <Route path="" element={<MainPage />} />
         <Route path="tickets" element={<Tickets />} />

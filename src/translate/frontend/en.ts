@@ -14,7 +14,7 @@ const messages = {
           fail: 'Error creating user. Check the reported data.',
           error: {
             name: `The full name must be between ${userNameMinLength} and ${userNameMaxLength} characters long`,
-            email: 'Email',
+            email: 'Invalid email',
             password: `The Password must be between ${passwMinLength} and ${passwMaxLength} characters long`,
           },
         },
@@ -25,6 +25,9 @@ const messages = {
         },
         buttons: {
           submit: 'Register',
+        },
+        links: {
+          forgotPassword: 'Forgot Password?',
           login: 'Already have an account? Log in!',
         },
       },
@@ -32,7 +35,7 @@ const messages = {
         title: 'Login',
         toasts: {
           error: {
-            email: 'Email',
+            email: 'Invalid email',
             password: `The Password must be between ${passwMinLength} and ${passwMaxLength} characters long`,
           },
         },
@@ -42,7 +45,30 @@ const messages = {
         },
         buttons: {
           submit: 'Enter',
-          register: "Don't have an account? Register!",
+        },
+        links: {
+          forgotPassword: 'Forgot Password?',
+          register: `Don't have an account? Register!`,
+        },
+      },
+      forgotPassword: {
+        title: 'I Forgot the Password',
+        toasts: {
+          success: 'Temporary password sent to the email entered',
+          fail: 'Error sending temporary password to the entered email',
+          error: {
+            email: 'Invalid email',
+          },
+        },
+        form: {
+          email: 'Email',
+        },
+        buttons: {
+          submit: 'Request',
+        },
+        links: {
+          login: 'Already have an account? Log in!',
+          register: `Don't have an account? Register!`,
         },
       },
       auth: {

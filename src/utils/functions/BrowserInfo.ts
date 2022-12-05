@@ -7,13 +7,12 @@ const getScreenHeight = (): number => {
 };
 
 const getBrowserTheme = (): string => {
-  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  return isDark;
-};
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}; // dark or light
 
 const heightScreenSize = {
   large: 1080,
-  medium: 660,
+  medium: 700,
   little: 450,
 };
 
@@ -23,7 +22,8 @@ const marginSize = {
   little: 3,
 };
 
-const marginTop =
-  getScreenHeight() > heightScreenSize.medium ? marginSize.large : marginSize.medium;
+const marginTop = (): number => {
+  return getScreenHeight() < heightScreenSize.medium ? marginSize.medium : marginSize.large;
+};
 
 export { getScreenWidth, getScreenHeight, getBrowserTheme, marginTop };

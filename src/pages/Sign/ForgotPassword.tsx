@@ -1,17 +1,8 @@
 import React from 'react';
 // import { Formik, Form, Field } from 'formik';
-import {
-  Box,
-  Grid,
-  Avatar,
-  Container,
-  IconButton,
-  Typography,
-  CssBaseline,
-  InputAdornment,
-} from '@mui/material';
+import { Box, Grid, Avatar, Container, Typography, CssBaseline } from '@mui/material';
 
-import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
+import { AccountCircle } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoadingButton from '@mui/lab/LoadingButton';
 
@@ -27,10 +18,6 @@ const SignIn = () => {
   const { handleLogin } = useAuth();
 
   const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
-
-  const handleClickShowPassword = () => {
-    setValues({ showPassword: !values.showPassword });
-  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,7 +51,7 @@ const SignIn = () => {
             {2 > 3 ? <AccountCircle /> : null}
           </Avatar>
           <Typography component="h1" variant="h5">
-            {i18n.t('login.title')}
+            {i18n.t('forgotPassword.title')}
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextFieldInput
@@ -72,27 +59,10 @@ const SignIn = () => {
               name="email"
               required
               autoComplete="email"
-              label={i18n.t('login.form.email')}
+              label={i18n.t('forgotPassword.form.email')}
+              fullWidth
               // helperText={values.showPassword ? i18n.t('login.toasts.error.email') : null}
               // error={values.showPassword}
-            />
-            <TextFieldInput
-              id="password"
-              name="password"
-              required
-              autoComplete="current-password"
-              type={values.showPassword ? 'text' : 'password'}
-              label={i18n.t('login.form.password')}
-              helperText={i18n.t('login.toasts.error.password')}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={handleClickShowPassword}>
-                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
             />
             <LoadingButton
               type="submit"
@@ -102,14 +72,14 @@ const SignIn = () => {
               disabled={false}
               sx={{ mt: 2, mb: 2 }}
             >
-              {i18n.t('login.buttons.submit')}
+              {i18n.t('forgotPassword.buttons.submit')}
             </LoadingButton>
             <Grid container>
               <Grid item xs>
-                <ComponentLink to="/forgot-password" text={i18n.t('login.links.forgotPassword')} />
+                <ComponentLink to="/" text={i18n.t('forgotPassword.links.login')} />
               </Grid>
               <Grid item>
-                <ComponentLink to="/signup" text={i18n.t('login.links.register')} />
+                <ComponentLink to="/signup" text={i18n.t('forgotPassword.links.register')} />
               </Grid>
             </Grid>
           </Box>
