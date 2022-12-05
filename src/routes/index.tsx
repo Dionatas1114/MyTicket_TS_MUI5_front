@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import SignIn from 'pages/SignIn';
-import SignUp from 'pages/Signup';
+import SignIn from 'pages/Sign/SignIn';
+import SignUp from 'pages/Sign/Signup';
 import ForgotPassword from 'pages/Sign/ForgotPassword';
 import MainPage from 'pages/MainPage';
 import Tickets from 'pages/Tickets';
