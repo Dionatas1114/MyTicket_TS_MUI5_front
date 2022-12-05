@@ -14,7 +14,7 @@ const messages = {
           fail: 'Erro ao criar usuário. Verifique os dados informados.',
           error: {
             name: `o nome deve ter entre ${userNameMinLength} e ${userNameMaxLength} caracteres`,
-            email: 'Email',
+            email: 'Email inválido',
             password: `A senha deve ter entre ${passwMinLength} e ${passwMaxLength} caracteres`,
           },
         },
@@ -25,14 +25,17 @@ const messages = {
         },
         buttons: {
           submit: 'Cadastrar',
-          login: 'Já tem uma conta? Entre!',
+        },
+        links: {
+          forgotPassword: 'Esqueceu a senha?',
+          login: 'Já tem conta? Entre!',
         },
       },
       login: {
         title: 'Login',
         toasts: {
           error: {
-            email: 'Email',
+            email: 'Email inválido',
             password: `A senha deve ter entre ${passwMinLength} e ${passwMaxLength} caracteres`,
           },
         },
@@ -42,7 +45,30 @@ const messages = {
         },
         buttons: {
           submit: 'Entrar',
-          register: 'Não tem um conta? Cadastre-se!',
+        },
+        links: {
+          forgotPassword: 'Esqueceu a senha?',
+          register: 'Não tem conta? Cadastre-se!',
+        },
+      },
+      forgotPassword: {
+        title: 'Esqueci a senha',
+        toasts: {
+          success: 'Senha provisória enviada para o email inserido',
+          fail: 'Erro ao enviar senha provisória para o email inserido',
+          error: {
+            email: 'Email inválido',
+          },
+        },
+        form: {
+          email: 'Email',
+        },
+        buttons: {
+          submit: 'Solicitar',
+        },
+        links: {
+          login: 'Já tem conta? Entre!',
+          register: 'Não tem conta? Cadastre-se!',
         },
       },
       auth: {

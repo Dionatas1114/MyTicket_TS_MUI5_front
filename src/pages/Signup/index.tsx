@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+// import { Formik, Form, Field } from 'formik';
 import {
   Box,
   Grid,
@@ -10,6 +10,7 @@ import {
   Typography,
   CssBaseline,
   InputAdornment,
+  Tooltip,
 } from '@mui/material';
 
 import { PersonAddAltRounded, Visibility, VisibilityOff } from '@mui/icons-material';
@@ -24,10 +25,14 @@ import { marginTop } from 'utils/functions/BrowserInfo';
 import useAuth from 'hooks/useAuth';
 
 const SignUp = () => {
-  const { handleSignUp } = useAuth();
   const theme = createTheme();
+  const { handleSignUp } = useAuth();
 
   const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
+
+  const handleClickSelectAvatar = () => {
+    setValues({ showPassword: !values.showPassword });
+  };
 
   const handleClickShowPassword = () => {
     setValues({ showPassword: !values.showPassword });
@@ -53,18 +58,21 @@ const SignUp = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar
-            sx={{
-              m: 1,
-              bgcolor: 'primary.dark',
-              width: 70,
-              height: 70,
-            }}
-          >
-            {/* //TODO personal avatar:
+          <Tooltip title="Click to Select Your Avatar" placement="right">
+            <Avatar
+              onClick={handleClickSelectAvatar}
+              sx={{
+                m: 1,
+                bgcolor: 'primary.dark',
+                width: 70,
+                height: 70,
+              }}
+            >
+              {/* //TODO personal avatar:
             {2 > 3 ? <AccountCircle /> : null} */}
-            <PersonAddAltRounded fontSize="large" />
-          </Avatar>
+              <PersonAddAltRounded fontSize="large" />
+            </Avatar>
+          </Tooltip>
           <Typography component="h1" variant="h5">
             {i18n.t('signup.title')}
           </Typography>
@@ -120,10 +128,10 @@ const SignUp = () => {
             </LoadingButton>
             <Grid container>
               <Grid item xs>
-                {/* <ComponentLink to="/" text="Forgot password?" /> */}
+                <ComponentLink to="/forgot-password" text={i18n.t('signup.links.forgotPassword')} />
               </Grid>
               <Grid item>
-                <ComponentLink to="/" text={i18n.t('signup.buttons.login')} />
+                <ComponentLink to="/" text={i18n.t('signup.links.login')} />
               </Grid>
             </Grid>
           </Box>
