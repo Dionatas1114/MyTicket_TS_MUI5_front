@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+// import { Formik, Form, Field } from 'formik';
 import {
   Box,
   Grid,
@@ -9,6 +9,8 @@ import {
   Typography,
   CssBaseline,
   InputAdornment,
+  Checkbox,
+  FormControlLabel,
 } from '@mui/material';
 
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
@@ -54,7 +56,7 @@ const SignIn = () => {
         >
           <Avatar
             sx={{
-              m: 1,
+              m: 2,
               bgcolor: 'primary.light',
               width: 70,
               height: 70,
@@ -71,6 +73,7 @@ const SignIn = () => {
               id="email"
               name="email"
               required
+              margin="dense"
               autoComplete="email"
               label={i18n.t('login.form.email')}
               // helperText={values.showPassword ? i18n.t('login.toasts.error.email') : null}
@@ -80,10 +83,11 @@ const SignIn = () => {
               id="password"
               name="password"
               required
+              margin="dense"
               autoComplete="current-password"
               type={values.showPassword ? 'text' : 'password'}
               label={i18n.t('login.form.password')}
-              helperText={i18n.t('login.toasts.error.password')}
+              // helperText={i18n.t('login.toasts.error.password')}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -94,22 +98,28 @@ const SignIn = () => {
                 ),
               }}
             />
+
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+
             <LoadingButton
               type="submit"
               loading={false}
               fullWidth
               variant="contained"
               disabled={false}
-              sx={{ mt: 2, mb: 2 }}
+              sx={{ mt: 1, mb: 1 }}
             >
               {i18n.t('login.buttons.submit')}
             </LoadingButton>
             <Grid container>
               <Grid item xs>
-                {/* <ComponentLink to="/" text="Forgot password?" /> */}
+                <ComponentLink to="/forgot-password" text={i18n.t('login.links.forgotPassword')} />
               </Grid>
               <Grid item>
-                <ComponentLink to="/signup" text={i18n.t('login.buttons.register')} />
+                <ComponentLink to="/signup" text={i18n.t('login.links.register')} />
               </Grid>
             </Grid>
           </Box>

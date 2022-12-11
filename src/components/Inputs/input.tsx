@@ -5,15 +5,18 @@ export default function TextFieldInput(props: any) {
     id = '',
     name = '',
     margin = 'normal',
+    color = undefined,
     type = 'text',
     required = false,
     fullWidth = true,
     autoFocus = false,
     autoComplete = undefined,
-    onClick = undefined,
-    onChange = undefined,
+    value = undefined,
     label = undefined,
     helperText = null,
+    disabled = false,
+    onClick = undefined,
+    onChange = undefined,
     error = null,
     InputProps = null,
   } = props;
@@ -24,17 +27,19 @@ export default function TextFieldInput(props: any) {
         id={id}
         name={name}
         margin={margin}
+        color={color}
         type={type}
         required={required}
         fullWidth={fullWidth}
         autoFocus={autoFocus}
         autoComplete={autoComplete}
+        value={value}
         onClick={onClick}
         onChange={onChange}
         label={label}
+        disabled={disabled}
         helperText={helperText}
         error={error}
-        // onMouseOver={}
         InputProps={InputProps}
       />
     </Tooltip>

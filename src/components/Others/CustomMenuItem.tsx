@@ -9,8 +9,7 @@ interface MenuItemProps {
   size?: any;
 }
 
-const CustomMenuItem = (props: MenuItemProps) => {
-  const { onClick, color, size, icon, content } = props;
+const CustomMenuItem = ({ onClick, color, size, icon, content }: MenuItemProps) => {
   return (
     <MenuItem onClick={onClick}>
       <IconButton color={color || 'inherit'} size={size || 'large'}>

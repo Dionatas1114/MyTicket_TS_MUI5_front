@@ -1,19 +1,21 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+// import { Formik, Form, Field } from 'formik';
 import {
   Box,
   Grid,
   Avatar,
+  Tooltip,
   TextField,
   Container,
   IconButton,
   Typography,
   CssBaseline,
   InputAdornment,
+  createTheme,
+  ThemeProvider,
 } from '@mui/material';
 
 import { PersonAddAltRounded, Visibility, VisibilityOff } from '@mui/icons-material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LoadingButton } from '@mui/lab';
 
 import { Copyright, ComponentLink } from 'components';
@@ -29,6 +31,10 @@ const SignUp = () => {
 
   const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
 
+  const handleClickSelectAvatar = () => {
+    setValues({ showPassword: !values.showPassword });
+  };
+
   const handleClickShowPassword = () => {
     setValues({ showPassword: !values.showPassword });
   };
@@ -38,6 +44,7 @@ const SignUp = () => {
     const data = new FormData(event.currentTarget);
 
     const signUpStatus = await handleSignUp(data);
+    console.log('🚀 ~ file: Signup.tsx:46 ~ handleSubmit ~ signUpStatus', signUpStatus);
     console.log(data);
   };
 
@@ -53,24 +60,27 @@ const SignUp = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar
-            sx={{
-              m: 1,
-              bgcolor: 'primary.dark',
-              width: 70,
-              height: 70,
-            }}
-          >
-            {/* //TODO personal avatar:
+          <Tooltip title="Click to Select Your Avatar" placement="right">
+            <Avatar
+              onClick={handleClickSelectAvatar}
+              sx={{
+                m: 2,
+                bgcolor: 'primary.dark',
+                width: 70,
+                height: 70,
+              }}
+            >
+              {/* //TODO personal avatar:
             {2 > 3 ? <AccountCircle /> : null} */}
-            <PersonAddAltRounded fontSize="large" />
-          </Avatar>
+              <PersonAddAltRounded fontSize="large" />
+            </Avatar>
+          </Tooltip>
           <Typography component="h1" variant="h5">
             {i18n.t('signup.title')}
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="name"
@@ -80,7 +90,7 @@ const SignUp = () => {
               autoFocus
             />
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="email"
@@ -89,7 +99,7 @@ const SignUp = () => {
               autoComplete="email"
             />
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="password"
@@ -114,16 +124,16 @@ const SignUp = () => {
               fullWidth
               variant="contained"
               disabled={false}
-              sx={{ mt: 2, mb: 2 }}
+              sx={{ mt: 1, mb: 1 }}
             >
               {i18n.t('signup.buttons.submit')}
             </LoadingButton>
             <Grid container>
               <Grid item xs>
-                {/* <ComponentLink to="/" text="Forgot password?" /> */}
+                <ComponentLink to="/forgot-password" text={i18n.t('signup.links.forgotPassword')} />
               </Grid>
               <Grid item>
-                <ComponentLink to="/" text={i18n.t('signup.buttons.login')} />
+                <ComponentLink to="/" text={i18n.t('signup.links.login')} />
               </Grid>
             </Grid>
           </Box>

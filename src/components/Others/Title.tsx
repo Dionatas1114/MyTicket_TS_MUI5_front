@@ -1,13 +1,28 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
+import { Typography } from '@mui/material';
 
 interface TitleProps {
   children?: React.ReactNode;
   component?: string;
-  variant?: any;
   color?: string;
-  align?: any;
   gutterBottom?: boolean;
+  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
+  variant?:
+    | 'inherit'
+    | 'body2'
+    | 'body1'
+    | 'caption'
+    | 'button'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
+    | 'subtitle1'
+    | 'subtitle2'
+    | 'overline'
+    | undefined;
 }
 
 const Title = (props: TitleProps) => {
@@ -15,9 +30,9 @@ const Title = (props: TitleProps) => {
   return (
     <Typography
       component={component}
-      variant={variant}
       color={color}
       align={align}
+      variant={variant}
       gutterBottom={gutterBottom || false}
       {...props}
     >

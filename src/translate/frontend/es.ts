@@ -28,7 +28,7 @@ const messages = {
         },
         links: {
           forgotPassword: '¿Has olvidado tu contraseña?',
-          login: '¿Ya tienes una cuenta? ¡Inicia sesión!',
+          login: 'Login',
         },
       },
       login: {
@@ -62,6 +62,7 @@ const messages = {
         },
         form: {
           email: 'Email',
+          temporaryPassword: 'Su contraseña temporal aparecerá aquí',
         },
         buttons: {
           submit: 'Solicitar',

@@ -28,7 +28,7 @@ const messages = {
         },
         links: {
           forgotPassword: 'Forgot Password?',
-          login: 'Already have an account? Log in!',
+          login: 'Login',
         },
       },
       login: {
@@ -62,12 +62,13 @@ const messages = {
         },
         form: {
           email: 'Email',
+          temporaryPassword: 'Your temporary password will appear here',
         },
         buttons: {
           submit: 'Request',
         },
         links: {
-          login: 'Already have an account? Log in!',
+          login: 'Login',
           register: `Don't have an account? Register!`,
         },
       },
