@@ -4,17 +4,18 @@ import {
   Box,
   Grid,
   Avatar,
+  Tooltip,
   TextField,
   Container,
   IconButton,
   Typography,
   CssBaseline,
   InputAdornment,
-  Tooltip,
+  createTheme,
+  ThemeProvider,
 } from '@mui/material';
 
 import { PersonAddAltRounded, Visibility, VisibilityOff } from '@mui/icons-material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LoadingButton } from '@mui/lab';
 
 import { Copyright, ComponentLink } from 'components';
@@ -43,6 +44,7 @@ const SignUp = () => {
     const data = new FormData(event.currentTarget);
 
     const signUpStatus = await handleSignUp(data);
+    console.log('🚀 ~ file: Signup.tsx:46 ~ handleSubmit ~ signUpStatus', signUpStatus);
     console.log(data);
   };
 
@@ -62,7 +64,7 @@ const SignUp = () => {
             <Avatar
               onClick={handleClickSelectAvatar}
               sx={{
-                m: 1,
+                m: 2,
                 bgcolor: 'primary.dark',
                 width: 70,
                 height: 70,
@@ -78,7 +80,7 @@ const SignUp = () => {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="name"
@@ -88,7 +90,7 @@ const SignUp = () => {
               autoFocus
             />
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="email"
@@ -97,7 +99,7 @@ const SignUp = () => {
               autoComplete="email"
             />
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="password"
@@ -122,7 +124,7 @@ const SignUp = () => {
               fullWidth
               variant="contained"
               disabled={false}
-              sx={{ mt: 2, mb: 2 }}
+              sx={{ mt: 1, mb: 1 }}
             >
               {i18n.t('signup.buttons.submit')}
             </LoadingButton>

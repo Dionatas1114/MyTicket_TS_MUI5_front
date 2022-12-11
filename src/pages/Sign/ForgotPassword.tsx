@@ -1,14 +1,25 @@
 import React from 'react';
 // import { Formik, Form, Field } from 'formik';
-import { Box, Grid, Avatar, Container, Typography, CssBaseline } from '@mui/material';
+import {
+  Box,
+  Grid,
+  Avatar,
+  Container,
+  Typography,
+  CssBaseline,
+  TextField,
+  createTheme,
+  ThemeProvider,
+} from '@mui/material';
 
 import { AccountCircle } from '@mui/icons-material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { Copyright, ComponentLink, TextFieldInput } from 'components';
 import { i18n } from 'translate/i18n';
 
+import { getRandomNumber } from 'utils/functions/RandomNumber';
 import { marginTop } from 'utils/functions/BrowserInfo';
 
 import useAuth from 'hooks/useAuth';
@@ -17,12 +28,13 @@ const SignIn = () => {
   const theme = createTheme();
   const { handleLogin } = useAuth();
 
-  const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
+  const [values, setValues] = React.useState<{ password?: number }>({ password: undefined });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
+    setValues({ password: getRandomNumber(10000000, 90000000) });
     const loginStatus = await handleLogin(data);
     console.log(loginStatus);
   };
@@ -41,7 +53,7 @@ const SignIn = () => {
         >
           <Avatar
             sx={{
-              m: 1,
+              m: 2,
               bgcolor: 'primary.light',
               width: 70,
               height: 70,
@@ -57,20 +69,30 @@ const SignIn = () => {
             <TextFieldInput
               id="email"
               name="email"
+              margin="dense"
               required
+              fullWidth
               autoComplete="email"
               label={i18n.t('forgotPassword.form.email')}
-              fullWidth
-              // helperText={values.showPassword ? i18n.t('login.toasts.error.email') : null}
               // error={values.showPassword}
             />
+            <TextField
+              id="temporaryPassword"
+              name="temporaryPassword"
+              margin="dense"
+              color="primary"
+              fullWidth
+              value={values.password || '********'}
+              helperText={i18n.t('forgotPassword.form.temporaryPassword')}
+            />
+            {/* margin-bottom: -14px */}
             <LoadingButton
               type="submit"
-              loading={false}
               fullWidth
+              loading={false}
               variant="contained"
               disabled={false}
-              sx={{ mt: 2, mb: 2 }}
+              sx={{ mt: 1, mb: 1 }}
             >
               {i18n.t('forgotPassword.buttons.submit')}
             </LoadingButton>
