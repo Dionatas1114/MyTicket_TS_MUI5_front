@@ -1,8 +1,7 @@
 import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 
-import { useTheme } from '@mui/material/styles';
-import { Paper, Switch } from '@mui/material';
+import { Paper, Switch, useTheme } from '@mui/material';
 
 import { Title } from 'components';
 import { i18n } from 'translate/i18n';
@@ -38,7 +37,7 @@ const Chart = () => {
         p: 2,
         display: 'flex',
         flexDirection: 'column',
-        height: 240,
+        height: 332,
       }}
     >
       <Title component="h2" variant="h6" color="primary">

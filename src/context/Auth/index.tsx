@@ -34,7 +34,7 @@ const DEFAULT_VALUE: AuthProps = {
 
 const AuthContext = React.createContext(DEFAULT_VALUE);
 
-const AuthProvider = (children: React.ReactNode) => {
+const AuthProvider = (children: React.ReactElement) => {
   // const [token, setToken] = React.useState(DEFAULT_VALUE.token);
 
   const { loading, user, isAuth } = useAuth();
