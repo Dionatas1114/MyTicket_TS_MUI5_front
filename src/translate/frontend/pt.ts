@@ -28,7 +28,7 @@ const messages = {
         },
         links: {
           forgotPassword: 'Esqueceu a senha?',
-          login: 'Já tem conta? Entre!',
+          login: 'Login',
         },
       },
       login: {
@@ -62,6 +62,7 @@ const messages = {
         },
         form: {
           email: 'Email',
+          temporaryPassword: 'Sua senha provisória aparecerá aqui',
         },
         buttons: {
           submit: 'Solicitar',
