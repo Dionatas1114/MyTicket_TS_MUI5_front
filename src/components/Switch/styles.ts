@@ -1,7 +1,4 @@
-import React from 'react';
-import { Switch, useTheme, styled } from '@mui/material';
-
-import { ColorContext } from 'context/Color';
+import { Switch, styled } from '@mui/material';
 
 const MuiThemeSwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -50,11 +47,4 @@ const MuiThemeSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const ThemeSwitch = () => {
-  const colorMode = React.useContext(ColorContext);
-  const isDarkTheme = useTheme().palette.mode === 'dark';
-
-  return <MuiThemeSwitch sx={{ m: 1 }} checked={isDarkTheme} onClick={colorMode.toggleColorMode} />;
-};
-
-export default ThemeSwitch;
+export default MuiThemeSwitch;
