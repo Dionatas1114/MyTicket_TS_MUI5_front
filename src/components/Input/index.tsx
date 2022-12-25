@@ -1,24 +1,53 @@
-import { TextField, Tooltip, Fade } from '@mui/material';
+import { ChangeEventHandler, MouseEventHandler } from 'react';
 
-export default function TextFieldInput(props: any) {
+import {
+  Fade,
+  Tooltip,
+  TextField,
+  InputProps,
+  FilledInputProps,
+  OutlinedInputProps,
+} from '@mui/material';
+
+interface Props {
+  id?: string;
+  name?: string;
+  type?: string;
+  autoComplete?: string;
+  value?: string;
+  label?: string;
+  required?: boolean;
+  fullWidth?: boolean;
+  autoFocus?: boolean;
+  disabled?: boolean;
+  error?: boolean | undefined;
+  helperText?: string | false | undefined;
+  InputProps?: Partial<InputProps> | Partial<FilledInputProps> | Partial<OutlinedInputProps>;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  color?: 'error' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | undefined;
+  margin?: 'normal' | 'none' | 'dense' | undefined;
+}
+
+export default function TextFieldInput(props: Props) {
   const {
     id = '',
     name = '',
-    margin = 'normal',
-    color = undefined,
     type = 'text',
-    required = false,
-    fullWidth = true,
-    autoFocus = false,
     autoComplete = undefined,
     value = undefined,
     label = undefined,
-    helperText = null,
+    required = false,
+    fullWidth = true,
+    autoFocus = false,
     disabled = false,
-    onClick = undefined,
-    onChange = undefined,
-    error = null,
-    InputProps = null,
+    error,
+    helperText,
+    InputProps,
+    onClick,
+    onChange,
+    color = undefined,
+    margin = 'normal',
   } = props;
 
   return (
@@ -26,21 +55,21 @@ export default function TextFieldInput(props: any) {
       <TextField
         id={id}
         name={name}
-        margin={margin}
-        color={color}
         type={type}
+        autoComplete={autoComplete}
+        value={value}
+        label={label}
+        helperText={helperText}
         required={required}
         fullWidth={fullWidth}
         autoFocus={autoFocus}
-        autoComplete={autoComplete}
-        value={value}
-        onClick={onClick}
-        onChange={onChange}
-        label={label}
         disabled={disabled}
-        helperText={helperText}
         error={error}
         InputProps={InputProps}
+        onClick={onClick}
+        onChange={onChange}
+        color={color}
+        margin={margin}
       />
     </Tooltip>
   );

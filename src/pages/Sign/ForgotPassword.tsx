@@ -1,31 +1,68 @@
 import React from 'react';
-// import { Formik, Form, Field } from 'formik';
-import { Box, Grid, Avatar, Container, Typography, CssBaseline, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
 
-import { AccountCircle } from '@mui/icons-material';
+import useAuth from 'hooks/useAuth';
+import { i18n } from 'translate/i18n';
+import { marginTop } from 'utils/functions/BrowserInfo';
+import { getRandomNumber } from 'utils/functions/RandomNumber';
+import { forgotPasswordSchema as validationSchema } from 'validations';
 
+import {
+  Box,
+  Grid,
+  Avatar,
+  Container,
+  Typography,
+  CssBaseline,
+  IconButton,
+  InputAdornment,
+} from '@mui/material';
+
+import { PrivacyTipRounded, ContentCopy } from '@mui/icons-material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { Copyright, ComponentLink, TextFieldInput } from 'components';
-import { i18n } from 'translate/i18n';
 
-import { getRandomNumber } from 'utils/functions/RandomNumber';
-import { marginTop } from 'utils/functions/BrowserInfo';
+type ForgotPasswordType = {
+  email: string;
+  temporaryPassword: string;
+};
 
-import useAuth from 'hooks/useAuth';
-
-const SignIn = () => {
+const ForgotPassword = () => {
   const { handleLogin } = useAuth();
-  const [values, setValues] = React.useState<{ password?: number }>({ password: undefined });
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    setValues({ password: getRandomNumber(10000000, 90000000) });
-    const loginStatus = await handleLogin(data);
-    console.log(loginStatus);
+  const initialValues: ForgotPasswordType = {
+    email: '',
+    temporaryPassword: '',
   };
+
+  const [temporaryPassword, setTemporaryPassword] = React.useState<string>(
+    initialValues.temporaryPassword
+  );
+
+  const handleCopyPassword = () => {
+    setTimeout(() => {
+      navigator.clipboard.writeText(temporaryPassword);
+      navigate('/change-password');
+    }, 1000);
+  };
+
+  const { handleSubmit, resetForm, handleChange, values, isSubmitting, touched, errors } =
+    useFormik<ForgotPasswordType>({
+      initialValues,
+      validationSchema,
+      onSubmit: (values, { setSubmitting }) => {
+        setTimeout(async () => {
+          setSubmitting(false);
+          setTemporaryPassword(getRandomNumber(10000000, 90000000).toString());
+          // const signUpStatus = await handleSignUp(values);
+          // console.log('🚀 signUpStatus', signUpStatus);
+          resetForm();
+        }, 500);
+      },
+    });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -40,46 +77,57 @@ const SignIn = () => {
       >
         <Avatar
           sx={{
-            m: 2,
-            bgcolor: 'primary.light',
-            width: 70,
-            height: 70,
+            m: 1,
+            bgcolor: 'primary.dark',
+            width: 80,
+            height: 80,
           }}
         >
-          {/*change 'AccountCircle' to personal avatar*/}
-          {2 > 3 ? <AccountCircle /> : null}
+          <PrivacyTipRounded fontSize="large" />
         </Avatar>
         <Typography component="h1" variant="h5">
           {i18n.t('forgotPassword.title')}
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2 }}>
           <TextFieldInput
+            margin="dense"
+            fullWidth
+            autoFocus
             id="email"
             name="email"
-            margin="dense"
-            required
-            fullWidth
             autoComplete="email"
             label={i18n.t('forgotPassword.form.email')}
-            // error={values.showPassword}
+            value={values.email.trim()}
+            onChange={handleChange}
+            error={touched.email && Boolean(errors.email)}
+            helperText={touched.email && errors.email}
           />
-          <TextField
+          <TextFieldInput
+            margin="dense"
+            fullWidth
             id="temporaryPassword"
             name="temporaryPassword"
-            margin="dense"
             color="primary"
-            fullWidth
-            value={values.password || '********'}
-            helperText={i18n.t('forgotPassword.form.temporaryPassword')}
+            value={temporaryPassword || '********'}
+            disabled={Boolean(temporaryPassword)}
+            helperText={i18n.t('forgotPassword.form.temporaryPassword').toString()}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={handleCopyPassword}>
+                    {Boolean(temporaryPassword) ? <ContentCopy /> : null}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           {/* margin-bottom: -14px */}
           <LoadingButton
-            type="submit"
             fullWidth
-            loading={false}
             variant="contained"
-            disabled={false}
             sx={{ mt: 1, mb: 1 }}
+            type="submit"
+            loading={isSubmitting}
           >
             {i18n.t('forgotPassword.buttons.submit')}
           </LoadingButton>
@@ -98,4 +146,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default ForgotPassword;

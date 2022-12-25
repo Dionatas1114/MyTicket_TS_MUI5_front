@@ -7,11 +7,28 @@ const { userNameMinLength, userNameMaxLength, passwMinLength, passwMaxLength } =
 const messages = {
   es: {
     translations: {
+      form: {
+        validations: {
+          userName: {
+            error: `El nombre debe tener entre ${userNameMinLength} y ${userNameMaxLength} characters`,
+            required: 'El nombre completo es obligatorio.',
+          },
+          email: {
+            isValid: 'Introduzca un email Válido',
+            required: 'O email es obligatorio.',
+          },
+          password: {
+            error: `La contraseña debe tener entre ${passwMinLength} y ${passwMaxLength} characteres`,
+            required: 'La contraseña es obligatoria.',
+            samePassword: 'La nueva contraseña no puede ser la misma que la anterior.',
+          },
+        },
+      },
       signup: {
         title: 'Registro',
         toasts: {
           success: '¡El usuario ha sido creado satisfactoriamente! ¡Ahora inicia sesión!',
-          fail: 'Error creando el usuario. Verifica la data reportada.',
+          fail: 'Error creando el usuario. Verifica los datos ingresados.',
           error: {
             name: `El nombre debe tener entre ${userNameMinLength} y ${userNameMaxLength} characters`,
             email: 'Email inválido',
@@ -20,7 +37,7 @@ const messages = {
         },
         form: {
           name: 'Nombre Completo',
-          email: 'Correo Electrónico',
+          email: 'Email',
           password: 'Contraseña',
         },
         buttons: {
@@ -40,7 +57,7 @@ const messages = {
           },
         },
         form: {
-          email: 'Correo Electrónico',
+          email: 'Email',
           password: 'Contraseña',
         },
         buttons: {
@@ -55,7 +72,7 @@ const messages = {
         title: 'Olvidé la contraseña',
         toasts: {
           success: 'Contraseña temporal enviada al correo ingresado',
-          fail: 'Error al enviar la contraseña temporal al correo electrónico ingresado',
+          fail: 'Error al enviar la contraseña temporal al email ingresado',
           error: {
             email: 'Email inválido',
           },
@@ -70,6 +87,30 @@ const messages = {
         links: {
           login: '¿Ya tienes una cuenta? ¡Inicia sesión!',
           register: '¿No tienes cuenta? ¡Regístrate!',
+        },
+      },
+      changePassword: {
+        title: 'Cambiar la contraseña',
+        toasts: {
+          success: 'Contraseña cambiada satisfactoriamente',
+          fail: 'Error al cambiar contraseña',
+          error: {
+            email: 'Email inválido',
+            oldPassword: 'Contraseña inválida',
+            newPassword: 'Contraseña inválida',
+          },
+        },
+        form: {
+          email: 'Email',
+          oldPassword: 'Contraseña antigua o temporal',
+          newPassword: 'Nueva contraseña',
+        },
+        buttons: {
+          submit: 'Cambiar la contraseña',
+        },
+        links: {
+          login: 'Login',
+          forgotPassword: '¿Has olvidado tu contraseña?',
         },
       },
       auth: {
