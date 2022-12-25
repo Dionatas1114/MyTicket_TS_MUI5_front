@@ -7,19 +7,36 @@ const { userNameMinLength, userNameMaxLength, passwMinLength, passwMaxLength } =
 const messages = {
   en: {
     translations: {
+      form: {
+        validations: {
+          userName: {
+            error: `Full name should be between ${userNameMinLength} and ${userNameMaxLength} characters long`,
+            required: 'Full name is required.',
+          },
+          email: {
+            isValid: 'Enter a valid email',
+            required: 'Email is required.',
+          },
+          password: {
+            error: `Password should be between ${passwMinLength} and ${passwMaxLength} characters long`,
+            required: 'Password is required.',
+            samePassword: 'New password cannot be the same as old password.',
+          },
+        },
+      },
       signup: {
         title: 'Sign up',
         toasts: {
           success: 'User created successfully! Please login!',
           fail: 'Error creating user. Check the reported data.',
           error: {
-            name: `The full name must be between ${userNameMinLength} and ${userNameMaxLength} characters long`,
-            email: 'Invalid email',
-            password: `The Password must be between ${passwMinLength} and ${passwMaxLength} characters long`,
+            name: `Full name should be between ${userNameMinLength} and ${userNameMaxLength} characters long`,
+            email: 'Enter a valid email',
+            password: `Password should be between ${passwMinLength} and ${passwMaxLength} characters long`,
           },
         },
         form: {
-          name: 'Full Name',
+          name: 'Full name',
           email: 'Email',
           password: 'Password',
         },
@@ -27,7 +44,7 @@ const messages = {
           submit: 'Register',
         },
         links: {
-          forgotPassword: 'Forgot Password?',
+          forgotPassword: 'Forgot password?',
           login: 'Login',
         },
       },
@@ -35,8 +52,8 @@ const messages = {
         title: 'Login',
         toasts: {
           error: {
-            email: 'Invalid email',
-            password: `The Password must be between ${passwMinLength} and ${passwMaxLength} characters long`,
+            email: 'Enter a valid email',
+            password: `Password should be between ${passwMinLength} and ${passwMaxLength} characters long`,
           },
         },
         form: {
@@ -47,17 +64,17 @@ const messages = {
           submit: 'Enter',
         },
         links: {
-          forgotPassword: 'Forgot Password?',
+          forgotPassword: 'Forgot password?',
           register: `Don't have an account? Register!`,
         },
       },
       forgotPassword: {
-        title: 'I Forgot the Password',
+        title: 'I forgot the password',
         toasts: {
           success: 'Temporary password sent to the email entered',
           fail: 'Error sending temporary password to the entered email',
           error: {
-            email: 'Invalid email',
+            email: 'Enter a valid email',
           },
         },
         form: {
@@ -70,6 +87,30 @@ const messages = {
         links: {
           login: 'Login',
           register: `Don't have an account? Register!`,
+        },
+      },
+      changePassword: {
+        title: 'Change password',
+        toasts: {
+          success: 'Password changed successfully',
+          fail: 'Error when changing password',
+          error: {
+            email: 'Invalid email',
+            oldPassword: 'Invalid password',
+            newPassword: 'Invalid password',
+          },
+        },
+        form: {
+          email: 'Email',
+          oldPassword: 'Old or temporary password',
+          newPassword: 'New password',
+        },
+        buttons: {
+          submit: 'Change password',
+        },
+        links: {
+          login: 'Login',
+          forgotPassword: 'Forgot password?',
         },
       },
       auth: {

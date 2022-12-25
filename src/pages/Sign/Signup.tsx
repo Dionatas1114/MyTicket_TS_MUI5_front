@@ -1,10 +1,14 @@
 import React from 'react';
-// import { Formik, Form, Field } from 'formik';
+import { useFormik } from 'formik';
+import useAuth from 'hooks/useAuth';
+import { i18n } from 'translate/i18n';
+import { marginTop } from 'utils/functions/BrowserInfo';
+import { signUpSchema as validationSchema } from 'validations';
+
 import {
   Box,
   Grid,
   Avatar,
-  TextField,
   Container,
   IconButton,
   Typography,
@@ -15,30 +19,44 @@ import {
 import { PersonAddAltRounded, Visibility, VisibilityOff } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 
-import { Copyright, ComponentLink } from 'components';
-import { i18n } from 'translate/i18n';
+import { Copyright, ComponentLink, TextFieldInput } from 'components';
 
-import { marginTop } from 'utils/functions/BrowserInfo';
-
-import useAuth from 'hooks/useAuth';
+type SignUpType = {
+  name: string;
+  email: string;
+  password: string;
+};
 
 const SignUp = () => {
   const { handleSignUp } = useAuth();
 
-  const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
+  const initialValues: SignUpType = {
+    name: '',
+    email: '',
+    password: '',
+  };
+
+  // const [formValues, setFormValues] = React.useState(initialValues);
+  const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   const handleClickShowPassword = () => {
-    setValues({ showPassword: !values.showPassword });
+    setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    const signUpStatus = await handleSignUp(data);
-    console.log('🚀 ~ file: Signup.tsx:46 ~ handleSubmit ~ signUpStatus', signUpStatus);
-    console.log(data);
-  };
+  const { handleSubmit, resetForm, handleChange, values, isSubmitting, touched, errors } =
+    useFormik<SignUpType>({
+      initialValues,
+      validationSchema,
+      onSubmit: ({ name, ...rest }, { setSubmitting }) => {
+        setTimeout(async () => {
+          setSubmitting(false);
+          const values = { name: name.trim(), ...rest };
+          const signUpStatus = await handleSignUp(values);
+          console.log('🚀 signUpStatus', signUpStatus);
+          resetForm();
+        }, 500);
+      },
+    });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -53,10 +71,10 @@ const SignUp = () => {
       >
         <Avatar
           sx={{
-            m: 3,
+            m: 2,
             bgcolor: 'primary.dark',
-            width: 70,
-            height: 70,
+            width: 80,
+            height: 80,
           }}
         >
           <PersonAddAltRounded fontSize="large" />
@@ -64,56 +82,66 @@ const SignUp = () => {
         <Typography component="h1" variant="h5">
           {i18n.t('signup.title')}
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
+
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2 }}>
+          <TextFieldInput
             margin="dense"
-            required
             fullWidth
+            autoFocus
             id="name"
             name="name"
-            label={i18n.t('signup.form.name')}
             autoComplete="name"
-            autoFocus
+            label={i18n.t('signup.form.name')}
+            value={values.name}
+            onChange={handleChange}
+            error={touched.name && Boolean(errors.name)}
+            helperText={touched.name && errors.name}
           />
-          <TextField
+          <TextFieldInput
             margin="dense"
-            required
             fullWidth
+            autoComplete="email"
             id="email"
             name="email"
             label={i18n.t('signup.form.email')}
-            autoComplete="email"
+            value={values.email.trim()}
+            onChange={handleChange}
+            error={touched.email && Boolean(errors.email)}
+            helperText={touched.email && errors.email}
           />
-          <TextField
+          <TextFieldInput
             margin="dense"
-            required
             fullWidth
             id="password"
             name="password"
-            label={i18n.t('signup.form.password')}
-            type={values.showPassword ? 'text' : 'password'}
             autoComplete="current-password"
-            helperText={i18n.t('login.toasts.error.password')}
+            label={i18n.t('signup.form.password')}
+            type={showPassword ? 'text' : 'password'}
+            value={values.password.trim()}
+            onChange={handleChange}
+            error={touched.password && Boolean(errors.password)}
+            helperText={touched.password && errors.password}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={handleClickShowPassword}>
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               ),
             }}
           />
           <LoadingButton
-            type="submit"
-            loading={false}
             fullWidth
             variant="contained"
-            disabled={false}
             sx={{ mt: 1, mb: 1 }}
+            type="submit"
+            loading={isSubmitting}
+            // disabled={!(isValid && dirty) || values === initialValues}
           >
             {i18n.t('signup.buttons.submit')}
           </LoadingButton>
+
           <Grid container>
             <Grid item xs>
               <ComponentLink to="/forgot-password" text={i18n.t('signup.links.forgotPassword')} />
