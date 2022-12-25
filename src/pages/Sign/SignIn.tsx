@@ -1,5 +1,10 @@
 import React from 'react';
-// import { Formik, Form, Field } from 'formik';
+import { useFormik } from 'formik';
+import useAuth from 'hooks/useAuth';
+import { i18n } from 'translate/i18n';
+import { marginTop } from 'utils/functions/BrowserInfo';
+import { loginSchema as validationSchema } from 'validations';
+
 import {
   Box,
   Grid,
@@ -17,27 +22,45 @@ import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { Copyright, ComponentLink, TextFieldInput } from 'components';
-import { i18n } from 'translate/i18n';
 
-import { marginTop } from 'utils/functions/BrowserInfo';
-
-import useAuth from 'hooks/useAuth';
+type SignInType = {
+  email: string;
+  password: string;
+};
 
 const SignIn = () => {
   const { handleLogin } = useAuth();
-  const [values, setValues] = React.useState<{ showPassword: boolean }>({ showPassword: false });
+
+  const initialValues: SignInType = {
+    email: '',
+    password: '',
+  };
+
+  // const [formValues, setFormValues] = React.useState(initialValues);
+  const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   const handleClickShowPassword = () => {
-    setValues({ showPassword: !values.showPassword });
+    setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const { handleSubmit, resetForm, handleChange, values, isSubmitting, touched, errors } =
+    useFormik<SignInType>({
+      initialValues,
+      validationSchema,
+      onSubmit: (values, { setSubmitting }) => {
+        setTimeout(async () => {
+          setSubmitting(false);
+          const signUpStatus = await handleLogin(values);
+          console.log('🚀 signUpStatus', signUpStatus);
+          resetForm();
+        }, 500);
+      },
+    });
 
-    const loginStatus = await handleLogin(data);
-    console.log(loginStatus);
-  };
+  const encodedImg =
+    'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
+
+  const reader = new FileReader();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -54,41 +77,48 @@ const SignIn = () => {
           sx={{
             m: 2,
             bgcolor: 'primary.light',
-            width: 70,
-            height: 70,
+            width: 80,
+            height: 80,
           }}
-        >
-          {/*change 'AccountCircle' to personal avatar*/}
-          {2 > 3 ? <AccountCircle /> : null}
-        </Avatar>
+          src={`data:image/png;base64, ${encodedImg}`}
+        />
+        {/* <AccountCircle />
+        </Avatar> */}
         <Typography component="h1" variant="h5">
           {i18n.t('login.title')}
         </Typography>
+
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextFieldInput
+            margin="dense"
+            fullWidth
+            autoFocus
             id="email"
             name="email"
-            required
-            margin="dense"
             autoComplete="email"
             label={i18n.t('login.form.email')}
-            // helperText={values.showPassword ? i18n.t('login.toasts.error.email') : null}
-            // error={values.showPassword}
+            value={values.email.trim()}
+            onChange={handleChange}
+            error={touched.email && Boolean(errors.email)}
+            helperText={touched.email && errors.email}
           />
           <TextFieldInput
+            margin="dense"
+            fullWidth
             id="password"
             name="password"
-            required
-            margin="dense"
             autoComplete="current-password"
-            type={values.showPassword ? 'text' : 'password'}
             label={i18n.t('login.form.password')}
-            // helperText={i18n.t('login.toasts.error.password')}
+            type={showPassword ? 'text' : 'password'}
+            value={values.password.trim()}
+            onChange={handleChange}
+            error={touched.password && Boolean(errors.password)}
+            helperText={touched.password && errors.password}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={handleClickShowPassword}>
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -101,15 +131,16 @@ const SignIn = () => {
           />
 
           <LoadingButton
-            type="submit"
-            loading={false}
             fullWidth
             variant="contained"
-            disabled={false}
             sx={{ mt: 1, mb: 1 }}
+            type="submit"
+            loading={isSubmitting}
+            // disabled={!(isValid && dirty) || values === initialValues}
           >
             {i18n.t('login.buttons.submit')}
           </LoadingButton>
+
           <Grid container>
             <Grid item xs>
               <ComponentLink to="/forgot-password" text={i18n.t('login.links.forgotPassword')} />

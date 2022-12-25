@@ -1,21 +1,43 @@
 import * as Yup from 'yup';
 import rules from 'validations/patterns/rules';
-
 import { i18n } from 'translate/i18n';
 
-const { userNameMinLength, userNameMaxLength, passwMinLength, passwMaxLength } = rules;
-
-const userSchema = Yup.object().shape({
+const name = {
   name: Yup.string()
-    .min(userNameMinLength, i18n.t('validations.user.userNameMinLength'))
-    .max(userNameMaxLength, i18n.t('validations.user.userNameMaxLength'))
-    .required(i18n.t('validations.user.required'))
-    .transform((value) => value.replace(/\D/g, '')),
+    .trim()
+    .min(rules.userNameMinLength, i18n.t('form.validations.userName.error'))
+    .max(rules.userNameMaxLength, i18n.t('form.validations.userName.error'))
+    .required(i18n.t('form.validations.userName.required')),
+};
+
+const email = {
+  email: Yup.string()
+    .email(i18n.t('form.validations.email.isValid'))
+    .required(i18n.t('form.validations.email.required')),
+};
+
+const password = {
   password: Yup.string()
-    .min(passwMinLength, 'Too Short!')
-    .max(passwMaxLength, 'Too Long!')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
+    .min(rules.passwMinLength, i18n.t('form.validations.password.error'))
+    .max(rules.passwMaxLength, i18n.t('form.validations.password.error'))
+    .required(i18n.t('form.validations.password.required')),
+};
+
+const signUpSchema = Yup.object().shape({
+  ...name,
+  ...password,
+  ...email,
 });
 
-export default userSchema;
+const loginSchema = Yup.object().shape({ ...email, ...password });
+const forgotPasswordSchema = Yup.object().shape({ ...email });
+const changePasswordSchema = Yup.object().shape({
+  ...email,
+  oldPassword: password.password,
+  newPassword: password.password.notOneOf(
+    [Yup.ref('oldPassword'), null],
+    i18n.t('form.validations.password.samePassword')
+  ),
+});
+
+export { loginSchema, signUpSchema, forgotPasswordSchema, changePasswordSchema };

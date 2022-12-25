@@ -7,6 +7,23 @@ const { userNameMinLength, userNameMaxLength, passwMinLength, passwMaxLength } =
 const messages = {
   pt: {
     translations: {
+      form: {
+        validations: {
+          userName: {
+            error: `o nome deve ter entre ${userNameMinLength} e ${userNameMaxLength} caracteres`,
+            required: 'O nome completo é obrigatório.',
+          },
+          email: {
+            isValid: 'Insira um email Válido',
+            required: 'O email é obrigatório.',
+          },
+          password: {
+            error: `A senha deve ter entre ${passwMinLength} e ${passwMaxLength} caracteres`,
+            required: 'A senha é obrigatória.',
+            samePassword: 'A nova senha não pode ser igual à anterior.',
+          },
+        },
+      },
       signup: {
         title: 'Cadastre-se',
         toasts: {
@@ -70,6 +87,30 @@ const messages = {
         links: {
           login: 'Já tem conta? Entre!',
           register: 'Não tem conta? Cadastre-se!',
+        },
+      },
+      changePassword: {
+        title: 'Alterar a senha',
+        toasts: {
+          success: 'Senha alterada com sucesso',
+          fail: 'Erro ao alterar a senha',
+          error: {
+            email: 'Email inválido',
+            oldPassword: 'Senha inválida',
+            newPassword: 'Senha inválida',
+          },
+        },
+        form: {
+          email: 'Email',
+          oldPassword: 'Senha antiga ou provisória',
+          newPassword: 'Nova senha',
+        },
+        buttons: {
+          submit: 'Alterar',
+        },
+        links: {
+          login: 'Já tem conta? Entre!',
+          forgotPassword: 'Esqueceu a senha?',
         },
       },
       auth: {
@@ -436,13 +477,6 @@ const messages = {
         confirmationModal: {
           title: 'Apagar mensagem?',
           message: 'Esta ação não pode ser revertida.',
-        },
-      },
-      validations: {
-        user: {
-          userNameMinLength: `O nome completo deve ter mais que ${userNameMinLength} caracteres.`,
-          userNameMaxLength: `O nome completo não pode ter mais que ${userNameMaxLength} caracteres.`,
-          required: 'O nome completo é obrigatório.',
         },
       },
       backendErrors,

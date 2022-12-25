@@ -6,11 +6,20 @@ import { api, socket } from 'services/api';
 import { i18n } from 'translate/i18n';
 import toastError from 'utils/toastError';
 
-interface User {
-  name: string;
+type SignInType = {
   email: string;
   password: string;
-}
+};
+
+type SignUpType = SignInType & {
+  name: string;
+};
+
+type ChangePasswordType = {
+  email: string;
+  oldPassword: string;
+  newPassword: string;
+};
 
 const useAuth = () => {
   const navigateTo = useNavigate();
@@ -87,14 +96,8 @@ const useAuth = () => {
     };
   }, [user]);
 
-  const handleSignUp = async (data: FormData) => {
-    const userData = {
-      name: data.get('name'),
-      email: data.get('email'),
-      password: data.get('password'),
-    };
-    console.log(userData);
-
+  const handleSignUp = async (userData: SignUpType) => {
+    console.log('🚀 ~ file: index.ts:91 ~ handleSignUp ~ userData', userData);
     try {
       await api.post('/auth/signup', userData);
       toast.success(i18n.t('signup.toasts.success'));
@@ -103,17 +106,14 @@ const useAuth = () => {
       toastError(err);
       throw new Error(err.message);
     }
+    return true;
   };
 
-  const handleLogin = async (data: FormData) => {
-    const userData = {
-      email: data.get('email'),
-      password: data.get('password'),
-    };
-    console.log(userData);
+  const handleLogin = async (data: SignInType) => {
+    console.log(data);
 
     try {
-      await api.post('/auth/login', userData);
+      await api.post('/auth/login', data);
       toast.success(i18n.t('auth.toasts.success'));
     } catch (err) {
       toastError(err);
@@ -155,7 +155,20 @@ const useAuth = () => {
     }
   };
 
-  return { isAuth, user, loading, handleSignUp, handleLogin, handleLogout };
+  const handleChangePassword = async (data: ChangePasswordType) => {
+    console.log(data);
+
+    try {
+      await api.post('/changePassword/login', data);
+      toast.success(i18n.t('changePassword.toasts.success'));
+    } catch (err) {
+      toastError(err);
+      throw new Error(err.message);
+    }
+    return true; // success
+  };
+
+  return { isAuth, user, loading, handleSignUp, handleLogin, handleLogout, handleChangePassword };
 };
 
 export default useAuth;
