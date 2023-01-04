@@ -11,6 +11,7 @@ interface User {
   email: string;
   profile?: string;
   createdAt?: Date;
+  updatedAt?: Date;
 }
 
 const useUsers = () => {
@@ -25,15 +26,17 @@ const useUsers = () => {
       const fetchUsers = async () => {
         try {
           const { data } = await api.get('/users');
-          const { users } = data;
-          const userData = users.map((user: User) => {
-            const { createdAt, ...rest } = user;
-            // const date = createdAt?.toString().split('T')[0];
-            return { createdAt: ConvertByTimeZone(createdAt), ...rest };
+          const users = data.users.map((user: User) => {
+            const { createdAt, updatedAt, ...rest } = user;
+
+            return {
+              createdAt: ConvertByTimeZone(createdAt),
+              updatedAt: ConvertByTimeZone(updatedAt),
+              ...rest,
+            };
           });
 
-          console.log('🚀 ~ file: index.ts:52 ~ fetchUsers ~ users', userData);
-          setUsers(userData);
+          setUsers(users);
         } catch (err) {
           setLoading(false);
           toastError(err);
