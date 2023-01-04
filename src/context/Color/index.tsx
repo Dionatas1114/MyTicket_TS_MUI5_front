@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider, PaletteMode, createTheme } from '@mui/material';
 
+import themes from 'assets/themes';
 import { GetLocalStorageTheme } from 'utils/functions/BrowserInfo';
-import themes from './Themes';
 
 interface ColorContextSchema {
   toggleColorMode: () => void;

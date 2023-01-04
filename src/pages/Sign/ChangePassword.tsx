@@ -27,8 +27,12 @@ type ChangePasswordType = {
   newPassword: string;
 };
 
+type Data = {
+  [data: string]: boolean;
+};
+
 const ChangePassword = () => {
-  const { handleChangePassword } = useAuth();
+  const { HandleChangePassword } = useAuth();
 
   const initialValues: ChangePasswordType = {
     email: '',
@@ -36,16 +40,20 @@ const ChangePassword = () => {
     newPassword: '',
   };
 
+  const initialData: Data = {
+    showOldPassword: false,
+    showNewPassword: false,
+  };
+
   // const [formValues, setFormValues] = React.useState<ChangePasswordType>(initialValues);
-  const [showOldPassword, setShowOldPassword] = React.useState<boolean>(false);
-  const [showNewPassword, setShowNewPassword] = React.useState<boolean>(false);
+  const [data, setData] = React.useState<Data>(initialData);
 
   const handleShowOldPassword = () => {
-    setShowOldPassword(!showOldPassword);
+    setData({ showOldPassword: !data.showOldPassword, showNewPassword: data.showNewPassword });
   };
 
   const handleShowNewPassword = () => {
-    setShowNewPassword(!showNewPassword);
+    setData({ showNewPassword: !data.showNewPassword, showOldPassword: data.showOldPassword });
   };
 
   const { handleSubmit, resetForm, handleChange, values, isSubmitting, touched, errors } =
@@ -55,7 +63,7 @@ const ChangePassword = () => {
       onSubmit: (values, { setSubmitting }) => {
         setTimeout(async () => {
           setSubmitting(false);
-          const changePasswordStatus = await handleChangePassword(values);
+          const changePasswordStatus = await HandleChangePassword(values);
           console.log('🚀 changePasswordStatus', changePasswordStatus);
           console.log('🚀 changePasswordStatus', values);
           resetForm();
@@ -109,7 +117,7 @@ const ChangePassword = () => {
             name="oldPassword"
             autoComplete="current-password"
             label={i18n.t('changePassword.form.oldPassword')}
-            type={showOldPassword ? 'text' : 'password'}
+            type={data.showOldPassword ? 'text' : 'password'}
             value={values.oldPassword.trim()}
             onChange={handleChange}
             error={touched.oldPassword && Boolean(errors.oldPassword)}
@@ -118,7 +126,7 @@ const ChangePassword = () => {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={handleShowOldPassword}>
-                    {showOldPassword ? <VisibilityOff /> : <Visibility />}
+                    {data.showOldPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -131,7 +139,7 @@ const ChangePassword = () => {
             name="newPassword"
             autoComplete="current-password"
             label={i18n.t('changePassword.form.newPassword')}
-            type={showNewPassword ? 'text' : 'password'}
+            type={data.showNewPassword ? 'text' : 'password'}
             value={values.newPassword.trim()}
             onChange={handleChange}
             error={touched.newPassword && Boolean(errors.newPassword)}
@@ -140,7 +148,7 @@ const ChangePassword = () => {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={handleShowNewPassword}>
-                    {showNewPassword ? <VisibilityOff /> : <Visibility />}
+                    {data.showNewPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -152,7 +160,6 @@ const ChangePassword = () => {
             sx={{ mt: 1, mb: 1 }}
             type="submit"
             loading={isSubmitting}
-            // disabled={!(isValid && dirty) || values === initialValues}
           >
             {i18n.t('changePassword.buttons.submit')}
           </LoadingButton>

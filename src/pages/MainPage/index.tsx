@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Container, Grid } from '@mui/material';
 import { Chart, Calendar, Copyright } from 'components';
 
@@ -21,7 +19,7 @@ const MainPage = () => {
                 </Paper>
               </Grid> */}
       </Grid>
-      <Copyright sx={{ pt: 4 }} />
+      <Copyright />
     </Container>
   );
 };

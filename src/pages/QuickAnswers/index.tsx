@@ -1,6 +1,5 @@
-import React from 'react';
-
-import { Container, Grid, Paper, Toolbar } from '@mui/material';
+import { Container, Grid, Toolbar } from '@mui/material';
+import { CustomPaper } from 'components';
 
 const QuickAnswers = () => {
   return (
@@ -9,16 +8,9 @@ const QuickAnswers = () => {
       <Grid container spacing={3}>
         QuickAnswers
         <Grid item xs={12} md={8} lg={9}>
-          <Paper
-            sx={{
-              p: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              height: 240,
-            }}
-          >
-            {/* <QuickAnswers /> */}
-          </Paper>
+          <CustomPaper sx={{ height: 240 }}>
+            <>{'/* <QuickAnswers /> */'}</>
+          </CustomPaper>
         </Grid>
       </Grid>
     </Container>

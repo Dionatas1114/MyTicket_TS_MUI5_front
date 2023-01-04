@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import useAuth from 'hooks/useAuth';
 import { i18n } from 'translate/i18n';
@@ -28,7 +29,8 @@ type SignUpType = {
 };
 
 const SignUp = () => {
-  const { handleSignUp } = useAuth();
+  const navigateTo = useNavigate();
+  const { HandleSignUp } = useAuth();
 
   const initialValues: SignUpType = {
     name: '',
@@ -51,9 +53,9 @@ const SignUp = () => {
         setTimeout(async () => {
           setSubmitting(false);
           const values = { name: name.trim(), ...rest };
-          const signUpStatus = await handleSignUp(values);
-          console.log('🚀 signUpStatus', signUpStatus);
+          await HandleSignUp(values);
           resetForm();
+          navigateTo('/login');
         }, 500);
       },
     });
@@ -137,7 +139,6 @@ const SignUp = () => {
             sx={{ mt: 1, mb: 1 }}
             type="submit"
             loading={isSubmitting}
-            // disabled={!(isValid && dirty) || values === initialValues}
           >
             {i18n.t('signup.buttons.submit')}
           </LoadingButton>

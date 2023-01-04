@@ -9,6 +9,8 @@ import { ComponentLink, HrefLink } from './Others/Link';
 import CustomMenuItem from './Others/CustomMenuItem';
 import CustomTooltip from './Others/CustomTooltip';
 import Copyright from './Others/Copyright';
+import CustomPagination from './Table/CustomPagination';
+import CustomPaper from './Others/CustomPaper';
 
 export {
   Dashboard,
@@ -23,4 +25,6 @@ export {
   CustomMenuItem,
   CustomTooltip,
   Copyright,
+  CustomPagination,
+  CustomPaper,
 };

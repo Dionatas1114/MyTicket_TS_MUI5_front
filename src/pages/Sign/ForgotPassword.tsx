@@ -30,8 +30,8 @@ type ForgotPasswordType = {
 };
 
 const ForgotPassword = () => {
-  const { handleLogin } = useAuth();
   const navigate = useNavigate();
+  const { HandleSignUp } = useAuth();
 
   const initialValues: ForgotPasswordType = {
     email: '',
@@ -57,7 +57,7 @@ const ForgotPassword = () => {
         setTimeout(async () => {
           setSubmitting(false);
           setTemporaryPassword(getRandomNumber(10000000, 90000000).toString());
-          // const signUpStatus = await handleSignUp(values);
+          // const signUpStatus = await HandleSignUp(values);
           // console.log('🚀 signUpStatus', signUpStatus);
           resetForm();
         }, 500);

@@ -412,9 +412,11 @@ const messages = {
       users: {
         title: 'Usuarios',
         table: {
+          id: 'Id',
           name: 'Nombre',
           email: 'Correo Electrónico',
           profile: 'Perfil',
+          createdAt: 'Creado en',
           actions: 'Acciones',
         },
         buttons: {

@@ -12,7 +12,7 @@ interface User {
 interface AuthProps {
   loading: boolean;
   isAuth: boolean;
-  // token: string | undefined;
+  token: string | undefined;
   // setToken: React.Dispatch<string>;
   // handleLogin: (data: FormData) => Promise<boolean>;
   user?: User;
@@ -21,7 +21,7 @@ interface AuthProps {
 const DEFAULT_VALUE: AuthProps = {
   loading: false,
   isAuth: false,
-  // token: undefined,
+  token: undefined,
   // setToken: () => {},
   // handleLogin: ({email: '', password: ''}) => {return false},
   user: {
@@ -35,11 +35,13 @@ const DEFAULT_VALUE: AuthProps = {
 const AuthContext = React.createContext(DEFAULT_VALUE);
 
 const AuthProvider = (children: React.ReactElement) => {
-  // const [token, setToken] = React.useState(DEFAULT_VALUE.token);
+  const [token, setToken] = React.useState(DEFAULT_VALUE.token);
 
   const { loading, user, isAuth } = useAuth();
 
-  return <AuthContext.Provider value={{ loading, user, isAuth }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ loading, user, isAuth, token }}>{children}</AuthContext.Provider>
+  );
 };
 
 export { AuthContext, AuthProvider };

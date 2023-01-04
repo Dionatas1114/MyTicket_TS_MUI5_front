@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { Container, Grid, Toolbar } from '@mui/material';
-
 import { Chat, Copyright } from 'components';
+
 import { getRandomNumber } from 'utils/functions/RandomNumber';
 
 const Tickets = () => {
@@ -18,7 +16,7 @@ const Tickets = () => {
           <Chat />
         </Grid>
       </Grid>
-      <Copyright sx={{ pt: 4 }} />
+      <Copyright />
     </Container>
   );
 };
