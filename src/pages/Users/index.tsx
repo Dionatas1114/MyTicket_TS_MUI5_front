@@ -1,26 +1,38 @@
-import React from 'react';
+import { Container, Toolbar, Box } from '@mui/material';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
-import { Container, Grid, Paper, Toolbar } from '@mui/material';
+import { Title, CustomPagination, CustomPaper, Copyright } from 'components';
+import { i18n } from 'translate/i18n';
+import useUsers from 'hooks/useUsers';
+
+import columns from './userColumns';
 
 const Users = () => {
+  const { users } = useUsers();
+
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Toolbar />
-      <Grid container spacing={3}>
-        Users
-        <Grid item xs={12} md={8} lg={9}>
-          <Paper
-            sx={{
-              p: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              height: 240,
-            }}
-          >
-            {/* <Users /> */}
-          </Paper>
-        </Grid>
-      </Grid>
+    <Container maxWidth={false} sx={{ mt: 4, mb: 4 }}>
+      <CustomPaper>
+        <>
+          <Title color="primary">{i18n.t('mainDrawer.listItems.users')}</Title>
+          <Toolbar sx={{ m: -3 }} />
+          <Box sx={{ height: 400, width: '100%' }}>
+            <DataGrid
+              rows={users}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
+              experimentalFeatures={{ newEditingApi: true }}
+              components={{
+                Pagination: CustomPagination,
+                Toolbar: GridToolbar,
+              }}
+            />
+          </Box>
+        </>
+      </CustomPaper>
+      <Copyright />
     </Container>
   );
 };
