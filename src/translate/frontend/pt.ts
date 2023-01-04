@@ -418,6 +418,7 @@ const messages = {
           email: 'Email',
           profile: 'Perfil',
           createdAt: 'Criado em',
+          updatedAt: 'Atualizado em',
           actions: 'Ações',
         },
         buttons: {
