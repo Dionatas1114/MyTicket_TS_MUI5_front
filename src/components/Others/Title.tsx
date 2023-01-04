@@ -26,7 +26,7 @@ interface TitleProps {
 }
 
 const Title = (props: TitleProps) => {
-  const { children, component, variant, color, align, gutterBottom } = props;
+  const { children, component = 'h2', variant = 'h6', color, align, gutterBottom } = props;
   return (
     <Typography
       component={component}

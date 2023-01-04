@@ -4,14 +4,27 @@ import { api } from 'services/api';
 import { AuthContext } from 'context/Auth';
 import toastError from 'utils/toastError';
 
+interface Params {
+  searchParam?: string;
+  pageNumber?: string;
+  status?: string;
+  date?: string;
+  showAll?: string;
+  queueIds: number[];
+  withUnreadMessages?: string;
+}
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  profile: string;
+}
+
 interface Tickets {
-  searchParam: any;
-  pageNumber: any;
-  status: any;
-  date: any;
-  showAll: any;
-  queueIds: any;
-  withUnreadMessages: any;
+  whatsapp: {
+    user: User;
+  };
 }
 
 const useTickets = ({
@@ -22,7 +35,7 @@ const useTickets = ({
   showAll,
   queueIds,
   withUnreadMessages,
-}: Tickets) => {
+}: Params) => {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(false);
   const [tickets, setTickets] = useState([]);
@@ -44,7 +57,7 @@ const useTickets = ({
               withUnreadMessages,
             },
           });
-          const tickets = data.tickets.filter((allTickets: any) => {
+          const tickets = data.tickets.filter((allTickets: Tickets) => {
             const userTicket = allTickets?.whatsapp?.user;
             return user?.customer === 'master'
               ? allTickets

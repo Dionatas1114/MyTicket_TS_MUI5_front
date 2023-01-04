@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import useAuth from 'hooks/useAuth';
 import { i18n } from 'translate/i18n';
@@ -29,7 +30,8 @@ type SignInType = {
 };
 
 const SignIn = () => {
-  const { handleLogin } = useAuth();
+  const navigateTo = useNavigate();
+  const { HandleLogin } = useAuth();
 
   const initialValues: SignInType = {
     email: '',
@@ -50,9 +52,9 @@ const SignIn = () => {
       onSubmit: (values, { setSubmitting }) => {
         setTimeout(async () => {
           setSubmitting(false);
-          const signUpStatus = await handleLogin(values);
-          console.log('🚀 signUpStatus', signUpStatus);
+          await HandleLogin(values);
           resetForm();
+          navigateTo('/dash');
         }, 500);
       },
     });
@@ -60,7 +62,7 @@ const SignIn = () => {
   const encodedImg =
     'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
 
-  const reader = new FileReader();
+  // const reader = new FileReader();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -124,7 +126,6 @@ const SignIn = () => {
               ),
             }}
           />
-
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -136,7 +137,6 @@ const SignIn = () => {
             sx={{ mt: 1, mb: 1 }}
             type="submit"
             loading={isSubmitting}
-            // disabled={!(isValid && dirty) || values === initialValues}
           >
             {i18n.t('login.buttons.submit')}
           </LoadingButton>
