@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink, LinkProps } from 'react-router-dom';
+import { Link, LinkProps } from 'react-router-dom';
 
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 
@@ -14,19 +14,17 @@ const BarLink = (props: BarLinkProps) => {
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef<HTMLAnchorElement, Omit<LinkProps, 'to'>>(function Link(itemProps, ref) {
-        return <RouterLink to={to} ref={ref} {...itemProps} role={undefined} />;
+      React.forwardRef<HTMLAnchorElement, Omit<LinkProps, 'to'>>((itemProps, ref) => {
+        return <Link to={to} ref={ref} {...itemProps} role={undefined} />;
       }),
     [to]
   );
 
   return (
-    <li>
-      <ListItem button component={renderLink}>
-        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-        <ListItemText primary={primary} />
-      </ListItem>
-    </li>
+    <ListItem button component={renderLink}>
+      {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+      <ListItemText primary={primary} />
+    </ListItem>
   );
 };
 
