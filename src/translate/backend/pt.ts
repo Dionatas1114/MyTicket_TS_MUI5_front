@@ -1,6 +1,6 @@
 const messages = {
   //? ------------- AUTH MESSAGES -------------- */
-  ERR_INVALID_CREDENTIALS: 'Erro de autenticação. Por favor, tente novamente.',
+  ERR_INVALID_CREDENTIALS: 'Verifique os dados inseridos e tente novamente.',
   ERR_SESSION_EXPIRED: 'Sessão expirada. Por favor entre.',
   ERR_NO_PERMISSION: 'Você não tem permissão para acessar este recurso.',
 
