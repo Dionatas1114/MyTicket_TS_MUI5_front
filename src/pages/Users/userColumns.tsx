@@ -1,25 +1,21 @@
 import { GridColDef } from '@mui/x-data-grid';
 import { i18n } from 'translate/i18n';
 
-const fields = ['id', 'name', 'email', 'profile', 'createdAt', 'updatedAt', 'actions'];
-const widths = [50, 200, 200, 100, 180, 180, 250];
-const headerNames = [
-  i18n.t('users.table.id'),
-  i18n.t('users.table.name'),
-  i18n.t('users.table.email'),
-  i18n.t('users.table.profile'),
-  i18n.t('users.table.createdAt'),
-  i18n.t('users.table.updatedAt'),
-  i18n.t('users.table.actions'),
-];
+const data = {
+  fields: ['id', 'name', 'email', 'customer', 'profile', 'createdAt', 'updatedAt', 'actions'],
+  widths: [50, 180, 200, 80, 80, 160, 160, 200],
+  headerNames: (field: string) => {
+    return i18n.t(`users.table.${field}`);
+  },
+};
 
 let columns = [];
 
-for (let i = 0; i < fields.length; i++) {
+for (let i = 0; i < data.fields.length; i++) {
   const column = {
-    field: fields[i],
-    headerName: headerNames[i],
-    width: widths[i],
+    field: data.fields[i],
+    headerName: data.headerNames(data.fields[i]),
+    width: data.widths[i],
     editable: true,
   };
 
