@@ -1,3 +1,9 @@
+const widthScreenSize = {
+  small: 1150,
+  medium: 1400,
+  large: 1700,
+};
+
 const heightScreenSize = {
   small: 450,
   medium: 700,
@@ -17,4 +23,4 @@ const headerTableSize = {
   extraLarge: 200,
 };
 
-export { heightScreenSize, marginSize, headerTableSize };
+export { widthScreenSize, heightScreenSize, marginSize, headerTableSize };
