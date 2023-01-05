@@ -1,4 +1,5 @@
 import { useMediaQuery, PaletteMode } from '@mui/material';
+import { heightScreenSize, marginSize } from 'utils/constants';
 
 const getScreenWidth = (): number => {
   return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -18,18 +19,6 @@ const GetLocalStorageTheme = (): PaletteMode => {
 
   localStorage.setItem(storageKey, browserTheme);
   return localStorage?.getItem(storageKey) as PaletteMode;
-};
-
-const heightScreenSize = {
-  large: 1080,
-  medium: 700,
-  little: 450,
-};
-
-const marginSize = {
-  large: 12,
-  medium: 6,
-  little: 3,
 };
 
 const marginTop = (): number => {
