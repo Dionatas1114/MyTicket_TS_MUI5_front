@@ -417,6 +417,7 @@ const messages = {
           name: 'Nome',
           email: 'Email',
           profile: 'Perfil',
+          customer: 'Empresa',
           createdAt: 'Criado em',
           updatedAt: 'Atualizado em',
           actions: 'Ações',
