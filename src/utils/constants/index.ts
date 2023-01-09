@@ -18,9 +18,9 @@ const marginSize = {
 
 const headerTableSize = {
   small: 50,
-  medium: 100,
-  large: 150,
-  extraLarge: 200,
+  medium: 120,
+  large: 180,
+  extraLarge: 220,
 };
 
 export { widthScreenSize, heightScreenSize, marginSize, headerTableSize };

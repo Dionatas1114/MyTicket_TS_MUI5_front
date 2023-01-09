@@ -5,15 +5,6 @@ import { AuthContext } from 'context/Auth';
 import toastError from 'utils/toastError';
 import ConvertByTimeZone from 'utils/functions/ConvertByTimeZone';
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  profile?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
 const useUsers = () => {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(false);
@@ -26,13 +17,13 @@ const useUsers = () => {
       const fetchUsers = async () => {
         try {
           const { data } = await api.get('/users');
-          const users = data.users.map((user: User) => {
+          const users: User[] = data.users.map((user: User) => {
             const { createdAt, updatedAt, ...rest } = user;
 
             return {
+              ...rest,
               createdAt: ConvertByTimeZone(createdAt),
               updatedAt: ConvertByTimeZone(updatedAt),
-              ...rest,
             };
           });
 

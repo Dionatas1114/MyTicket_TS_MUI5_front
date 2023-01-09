@@ -27,6 +27,7 @@
   "include": [
     "src",
     "tests/App.test.tsx",
-    "tests/setupTests.ts"
+    "tests/setupTests.ts",
+    "src/types/index.d.ts"
   ]
 }
