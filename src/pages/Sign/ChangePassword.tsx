@@ -27,10 +27,6 @@ type ChangePasswordType = {
   newPassword: string;
 };
 
-type Data = {
-  [data: string]: boolean;
-};
-
 const ChangePassword = () => {
   const { HandleChangePassword } = useAuth();
 
@@ -40,13 +36,13 @@ const ChangePassword = () => {
     newPassword: '',
   };
 
-  const initialData: Data = {
+  const initialData: BooleanElements = {
     showOldPassword: false,
     showNewPassword: false,
   };
 
   // const [formValues, setFormValues] = React.useState<ChangePasswordType>(initialValues);
-  const [data, setData] = React.useState<Data>(initialData);
+  const [data, setData] = React.useState<BooleanElements>(initialData);
 
   const handleShowOldPassword = () => {
     setData({ showOldPassword: !data.showOldPassword, showNewPassword: data.showNewPassword });

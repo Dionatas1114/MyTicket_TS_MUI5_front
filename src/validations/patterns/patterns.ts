@@ -2,11 +2,7 @@ import rules from './rules';
 
 const { userNameMinLength, userNameMaxLength, passwMinLength, passwMaxLength, phoneLength } = rules;
 
-interface Patterns {
-  [rule: string]: string;
-}
-
-const patterns: Patterns = {
+const patterns: StringElements = {
   userName:
     "(?i)(^[a-z])((?![? .,'-]$)[ .]?[a-z]){" + userNameMinLength + ',' + userNameMaxLength + '}$',
   email:

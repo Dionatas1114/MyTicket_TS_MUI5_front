@@ -1,8 +1,4 @@
-interface Rules {
-  [rule: string]: number;
-}
-
-const rules: Rules = {
+const rules: NumberElements = {
   userNameMinLength: 6,
   userNameMaxLength: 50,
   emailMinLength: 6,
