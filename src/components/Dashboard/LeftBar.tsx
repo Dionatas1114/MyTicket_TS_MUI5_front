@@ -4,7 +4,7 @@ import { Badge, Divider, List, ListSubheader } from '@mui/material';
 import {
   Dashboard,
   WhatsApp,
-  Contacts,
+  ContactPhone,
   Message,
   People,
   SyncAlt,
@@ -21,7 +21,7 @@ const LeftBar = (
   <>
     <Link to="/dash" primary={i18n.t(`${list}.dashboard`)} icon={<Dashboard />} />
     <Link to="/dash/tickets" primary={i18n.t(`${list}.tickets`)} icon={<WhatsApp />} />
-    <Link to="/dash/contacts" primary={i18n.t(`${list}.contacts`)} icon={<Contacts />} />
+    <Link to="/dash/contacts" primary={i18n.t(`${list}.contacts`)} icon={<ContactPhone />} />
     <Link to="/dash/quickAnswers" primary={i18n.t(`${list}.quickAnswers`)} icon={<Message />} />
     <List>
       <Divider />
