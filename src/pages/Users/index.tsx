@@ -9,7 +9,7 @@ export default function Users() {
       <CustomPaper>
         <div>
           <Title color="primary">{i18n.t('mainDrawer.listItems.users')}</Title>
-          <Toolbar sx={{ m: -3 }} />
+          <Toolbar variant="dense" />
           <UserDataGrid />
         </div>
       </CustomPaper>

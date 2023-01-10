@@ -9,10 +9,10 @@ export default function UserDataGrid() {
 
   return (
     <DataGrid
-      sx={{ height: 400, width: '100%' }}
+      sx={{ height: 370, width: '100%' }}
       rows={users}
       columns={userColumns}
-      checkboxSelection
+      // checkboxSelection
       components={{
         Toolbar: GridToolbar,
         Pagination: CustomPagination,

@@ -5,7 +5,7 @@ const { small, medium, large, extraLarge } = headerTableSize;
 
 export default function getUserColumns(users: User[]) {
   const widths: NumberElements = {
-    id: small,
+    // id: small,
     name: extraLarge,
     email: extraLarge,
     profile: medium,
@@ -15,7 +15,7 @@ export default function getUserColumns(users: User[]) {
   };
 
   const userKeys = Object.values(users).map((user) => {
-    const { queues, ...rest } = user;
+    const { id, queues, ...rest } = user;
     return Object.keys(rest);
   });
 
