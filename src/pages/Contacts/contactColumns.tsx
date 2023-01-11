@@ -3,30 +3,30 @@ import { i18n } from 'translate/i18n';
 
 const { small, medium, large, extraLarge } = headerTableSize;
 
-export default function getUserColumns(users: User[]) {
+export default function getContactColumns(contacts: Contact[]) {
   const widths: NumberElements = {
     // id: small,
     name: extraLarge,
-    email: extraLarge,
-    profile: medium,
-    customer: medium,
+    number: large,
+    email: large,
+    isGroup: medium,
     createdAt: large,
     updatedAt: large,
   };
 
-  const userKeys = Object.values(users).map((user) => {
-    const { id, queues, ...rest } = user;
+  const contactKeys = Object.values(contacts).map((contact) => {
+    const { id, profilePicUrl, tickets, ...rest } = contact;
     return Object.keys(rest);
   });
 
-  const fields = userKeys[0];
+  const fields = contactKeys[0];
 
   let columns = [];
   for (let i = 0; i < fields?.length; i++) {
     const column = {
       field: fields[i] || '',
       width: widths[fields[i]] || 0,
-      headerName: i18n.t(`users.table.${fields[i]}`) || '',
+      headerName: i18n.t(`contacts.table.${fields[i]}`) || '',
     };
 
     columns.push(column);

@@ -57,7 +57,7 @@ const useTickets = ({
               withUnreadMessages,
             },
           });
-          const tickets = data.tickets.filter((allTickets: Tickets) => {
+          const tickets = data?.tickets?.filter((allTickets: Tickets) => {
             const userTicket = allTickets?.whatsapp?.user;
             return user?.customer === 'master'
               ? allTickets

@@ -28,7 +28,7 @@ const useConnections = () => {
     const fetchSession = async () => {
       try {
         const { data } = await api.get('/whatsapp/');
-        const whatsAppData = data.filter((allConnections: Connections) => {
+        const whatsAppData = data?.filter((allConnections: Connections) => {
           return user?.customer === 'master'
             ? allConnections
             : allConnections?.user?.id === user?.id ||

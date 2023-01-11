@@ -1,17 +1,17 @@
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { CustomPagination } from 'components';
-import useUsers from 'hooks/useUsers';
-import getUserColumns from './userColumns';
+import useContacts from 'hooks/useContacts';
+import getContactColumns from './contactColumns';
 
-export default function UserDataGrid() {
-  const { users } = useUsers();
-  const userColumns = getUserColumns(users);
+export default function ContactDataGrid() {
+  const { contacts } = useContacts();
+  const contactColumns = getContactColumns(contacts);
 
   return (
     <DataGrid
       sx={{ height: 370, width: '100%' }}
-      rows={users}
-      columns={userColumns}
+      rows={contacts}
+      columns={contactColumns}
       // checkboxSelection
       components={{
         Toolbar: GridToolbar,
