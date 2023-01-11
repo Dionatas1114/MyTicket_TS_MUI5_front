@@ -34,8 +34,8 @@ const useAuth = () => {
 
         const { data } = await api.post('/auth/refresh_token');
         if (data) {
-          localStorage.setItem('token', JSON.stringify(data.token));
-          api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+          localStorage.setItem('token', JSON.stringify(data?.token));
+          api.defaults.headers.common['Authorization'] = `Bearer ${data?.token}`;
         }
         return api(originalRequest);
       }
@@ -54,9 +54,9 @@ const useAuth = () => {
       if (token) {
         try {
           const { data } = await api.post('/auth/refresh_token');
-          api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+          api.defaults.headers.common['Authorization'] = `Bearer ${data?.token}`;
           setIsAuth(true);
-          setUser(data.user);
+          setUser(data?.user);
         } catch (err) {
           toastError(err);
         }

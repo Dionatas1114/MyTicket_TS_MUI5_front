@@ -211,8 +211,11 @@ const messages = {
         },
         table: {
           name: 'Nombre',
-          whatsapp: 'WhatsApp',
+          number: 'WhatsApp',
           email: 'Correo Electrónico',
+          isGroup: '¿Es un Grupo?',
+          createdAt: 'Creado el',
+          updatedAt: 'Actualizado el',
           actions: 'Acciones',
         },
       },

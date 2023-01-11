@@ -17,7 +17,7 @@ const useUsers = () => {
       const fetchUsers = async () => {
         try {
           const { data } = await api.get('/users');
-          const users: User[] = data.users.map((user: User) => {
+          const users: User[] = data?.users?.map((user: User) => {
             const { createdAt, updatedAt, ...rest } = user;
 
             return {
