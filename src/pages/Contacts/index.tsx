@@ -1,7 +1,7 @@
 import { Container, Toolbar } from '@mui/material';
 import { Copyright, CustomPaper, Title } from 'components';
-import ContactDataGrid from 'pages/Contacts/contactDataGrid';
 import { i18n } from 'translate/i18n';
+import ContactDataGrid from 'pages/Contacts/contactDataGrid';
 
 export default function Contacts() {
   return (
