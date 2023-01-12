@@ -4,21 +4,11 @@ import { api, socket } from 'services/api';
 import { AuthContext } from 'context/Auth';
 import { connectionReducer } from 'store/connectionReducer';
 
+import ConvertByTimeZone from 'utils/functions/ConvertByTimeZone';
 import toastError from 'utils/toastError';
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  profile?: string;
-}
-
-interface Connections {
-  user: User;
-  userId: number;
-}
-
 const useConnections = () => {
+  const [connections, setConnections] = useState([]);
   const [whatsApps, dispatch] = useReducer(connectionReducer, []);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
@@ -27,16 +17,23 @@ const useConnections = () => {
     setLoading(true);
     const fetchSession = async () => {
       try {
-        const { data } = await api.get('/whatsapp/');
-        const whatsAppData = data?.filter((allConnections: Connections) => {
-          return user?.customer === 'master'
-            ? allConnections
-            : allConnections?.user?.id === user?.id ||
-                allConnections?.user?.name === user?.name ||
-                allConnections?.user?.email === user?.email ||
-                allConnections?.userId.toString() === user?.customer;
+        const { data } = await api.get('/whatsapp');
+        const connections = data?.connections?.map((connection: Connection) => {
+          return {
+            ...connection,
+            updatedAt: ConvertByTimeZone(connection.updatedAt),
+          };
         });
-        dispatch({ type: 'LOAD_WHATSAPPS', payload: whatsAppData });
+        // const whatsAppData = data?.filter((allConnections: Connections) => {
+        //   return user?.customer === 'master'
+        //     ? allConnections
+        //     : allConnections?.user?.id === user?.id ||
+        //         allConnections?.user?.name === user?.name ||
+        //         allConnections?.user?.email === user?.email ||
+        //         allConnections?.userId.toString() === user?.customer;
+        // });
+        setConnections(connections);
+        // dispatch({ type: 'LOAD_WHATSAPPS', payload: data });
         setLoading(false);
       } catch (err) {
         setLoading(false);
@@ -70,7 +67,7 @@ const useConnections = () => {
     };
   }, []);
 
-  return { whatsApps, loading };
+  return { connections, loading };
 };
 
 export default useConnections;

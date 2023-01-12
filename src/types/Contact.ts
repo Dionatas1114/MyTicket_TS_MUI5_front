@@ -1,7 +1,3 @@
-interface Tickets {
-  userId: number;
-}
-
 interface Contacts {
   id: number;
   name: string;
@@ -9,9 +5,9 @@ interface Contacts {
   email?: string;
   isGroup?: boolean;
   profilePicUrl?: string;
-  tickets?: Tickets[];
+  tickets?: Ticket[];
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export type { Contacts, Tickets };
+export type { Contacts };
