@@ -1,18 +1,12 @@
-interface Queues {
-  id: string;
-  name: string;
-  color: string;
-}
-
 interface User {
   id: number;
   name: string;
   email: string;
   profile?: string;
   customer?: string;
-  queues?: Queues;
+  queues?: Queue[];
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export type { Queues, User };
+export type { User };
