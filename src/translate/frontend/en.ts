@@ -167,10 +167,11 @@ const messages = {
         table: {
           name: 'Name',
           status: 'Status',
-          lastUpdate: 'Last Update',
-          default: 'Default',
-          actions: 'Actions',
+          updatedAt: 'Last Update',
+          battery: 'Battery',
+          isDefault: 'Default',
           session: 'Session',
+          actions: 'Actions',
         },
       },
       whatsappModal: {
