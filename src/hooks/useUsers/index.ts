@@ -17,13 +17,11 @@ const useUsers = () => {
       const fetchUsers = async () => {
         try {
           const { data } = await api.get('/users');
-          const users: User[] = data?.users?.map((user: User) => {
-            const { createdAt, updatedAt, ...rest } = user;
-
+          const users = data?.users?.map((user: User) => {
             return {
-              ...rest,
-              createdAt: ConvertByTimeZone(createdAt),
-              updatedAt: ConvertByTimeZone(updatedAt),
+              ...user,
+              createdAt: ConvertByTimeZone(user.createdAt),
+              updatedAt: ConvertByTimeZone(user.updatedAt),
             };
           });
 
