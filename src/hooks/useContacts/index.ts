@@ -21,12 +21,10 @@ export default function useContacts() {
         try {
           const { data } = await api.get('/contacts');
           const contacts = data?.contacts?.map((contact: Contact) => {
-            const { createdAt, updatedAt, ...rest } = contact;
-
             return {
-              ...rest,
-              createdAt: ConvertByTimeZone(createdAt),
-              updatedAt: ConvertByTimeZone(updatedAt),
+              ...contact,
+              createdAt: ConvertByTimeZone(contact.createdAt),
+              updatedAt: ConvertByTimeZone(contact.updatedAt),
             };
           });
 

@@ -1,7 +1,7 @@
 import { headerTableSize } from 'utils/constants';
 import { i18n } from 'translate/i18n';
 
-const { small, medium, large, extraLarge } = headerTableSize;
+const { medium, large, extraLarge } = headerTableSize;
 
 export default function getContactColumns(contacts: Contact[]) {
   const widths: NumberElements = {
@@ -12,11 +12,12 @@ export default function getContactColumns(contacts: Contact[]) {
     isGroup: medium,
     createdAt: large,
     updatedAt: large,
+    actions: medium,
   };
 
   const contactKeys = Object.values(contacts).map((contact) => {
-    const { id, profilePicUrl, tickets, ...rest } = contact;
-    return Object.keys(rest);
+    const { name, number, email, isGroup, createdAt, updatedAt, actions } = contact;
+    return Object.keys({ name, number, email, isGroup, createdAt, updatedAt, actions });
   });
 
   const fields = contactKeys[0];

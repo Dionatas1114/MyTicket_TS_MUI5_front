@@ -12,11 +12,20 @@ export default function getUserColumns(users: User[]) {
     customer: medium,
     createdAt: large,
     updatedAt: large,
+    actions: medium,
   };
 
   const userKeys = Object.values(users).map((user) => {
-    const { id, queues, ...rest } = user;
-    return Object.keys(rest);
+    const { name, email, profile, customer, createdAt, updatedAt } = user;
+    return Object.keys({
+      name,
+      email,
+      profile,
+      customer,
+      createdAt,
+      updatedAt,
+      actions: '',
+    });
   });
 
   const fields = userKeys[0];
