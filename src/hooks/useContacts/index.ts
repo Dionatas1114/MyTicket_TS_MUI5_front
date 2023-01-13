@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { api } from 'services/api';
 import ConvertByTimeZone from 'utils/functions/ConvertByTimeZone';
+import formatPhoneNumber from 'utils/functions/ConvertPhoneNumber';
 import toastError from 'utils/toastError';
 
 // interface Params {
@@ -23,6 +24,7 @@ export default function useContacts() {
           const contacts = data?.contacts?.map((contact: Contact) => {
             return {
               ...contact,
+              number: formatPhoneNumber(contact.number),
               createdAt: ConvertByTimeZone(contact.createdAt),
               updatedAt: ConvertByTimeZone(contact.updatedAt),
             };
