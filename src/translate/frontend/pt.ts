@@ -380,7 +380,9 @@ const messages = {
         table: {
           name: 'Nome',
           color: 'Cor',
-          greeting: 'Mensagem de saudação',
+          greetingMessage: 'Mensagem de saudação',
+          createdAt: 'Criado em',
+          updatedAt: 'Atualizado em',
           actions: 'Ações',
         },
         buttons: {
