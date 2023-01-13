@@ -13,6 +13,7 @@ export default function UserDataGrid() {
       rows={users}
       columns={userColumns}
       // checkboxSelection
+      loading={users.length === 0}
       components={{
         Toolbar: GridToolbar,
         Pagination: CustomPagination,
