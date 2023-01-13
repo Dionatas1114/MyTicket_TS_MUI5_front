@@ -1,5 +1,5 @@
 interface Queues {
-  id: string;
+  id: number;
   name: string;
   color: string;
   greetingMessage?: string;
