@@ -400,6 +400,8 @@ const messages = {
         table: {
           shortcut: 'Atalho',
           message: 'Resposta Rápida',
+          createdAt: 'Criado em',
+          updatedAt: 'Atualizado em',
           actions: 'Ações',
         },
         buttons: {

@@ -399,6 +399,8 @@ const messages = {
         table: {
           shortcut: 'Shortcut',
           message: 'Quick Reply',
+          createdAt: 'Created at',
+          updatedAt: 'Updated at',
           actions: 'Actions',
         },
         buttons: {
