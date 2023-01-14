@@ -1,11 +1,12 @@
+import * as React from 'react';
+import { GridColumns } from '@mui/x-data-grid';
 import { headerTableSize } from 'utils/constants';
 import { i18n } from 'translate/i18n';
 
-const { small, medium, large, extraLarge } = headerTableSize;
+const { medium, large, extraLarge } = headerTableSize;
 
 export default function getUserColumns(users: User[]) {
   const widths: NumberElements = {
-    // id: small,
     name: extraLarge,
     email: extraLarge,
     profile: medium,
@@ -30,7 +31,7 @@ export default function getUserColumns(users: User[]) {
 
   const fields = userKeys[0];
 
-  let columns = [];
+  let columns: GridColumns = [];
   for (let i = 0; i < fields?.length; i++) {
     const column = {
       field: fields[i] || '',
