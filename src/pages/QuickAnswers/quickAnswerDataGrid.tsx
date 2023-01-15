@@ -13,6 +13,7 @@ export default function QuickAnswerDataGrid() {
       rows={quickAnswers}
       columns={quickAnswerColumns}
       // checkboxSelection
+      loading={quickAnswers.length === 0}
       components={{
         Toolbar: GridToolbar,
         Pagination: CustomPagination,
