@@ -24,6 +24,14 @@ declare global {
   interface BooleanElements {
     [string: string]: boolean;
   }
+
+  namespace React {
+    interface DOMAttributes<T> {
+      onResize?: ReactEventHandler<T> | undefined;
+      onResizeCapture?: ReactEventHandler<T> | undefined;
+      nonce?: string | undefined;
+    }
+  }
 }
 
 export {};

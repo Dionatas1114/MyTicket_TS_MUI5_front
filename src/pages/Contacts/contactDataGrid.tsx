@@ -13,6 +13,7 @@ export default function ContactDataGrid() {
       rows={contacts}
       columns={contactColumns}
       // checkboxSelection
+      loading={contacts.length === 0}
       components={{
         Toolbar: GridToolbar,
         Pagination: CustomPagination,

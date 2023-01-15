@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider, PaletteMode, createTheme } from '@mui/material';
 
-import themes from 'assets/themes';
 import { GetLocalStorageTheme } from 'utils/functions/BrowserInfo';
+import themes from 'assets/themes';
 
 interface ColorContextSchema {
   toggleColorMode: () => void;
@@ -19,6 +19,11 @@ function AppThemeProvider({ children }: Props): React.ReactElement {
 
   const [mode, setMode] = React.useState<PaletteMode>(localStorageTheme);
 
+  const theme = React.useMemo(
+    () => createTheme(mode === 'light' ? themes.lightTheme : themes.darkTheme),
+    [mode]
+  );
+
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -26,11 +31,6 @@ function AppThemeProvider({ children }: Props): React.ReactElement {
       },
     }),
     []
-  );
-
-  const theme = React.useMemo(
-    () => createTheme(mode === 'light' ? themes.lightTheme : themes.darkTheme),
-    [mode]
   );
 
   return (
