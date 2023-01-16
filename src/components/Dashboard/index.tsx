@@ -35,17 +35,13 @@ const LayoutContent = () => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMenu);
 
-  const toggleDrawer = () => {
-    setOpenDrawer(!openDrawer);
-  };
+  const toggleDrawer = () => setOpenDrawer(!openDrawer);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMenu(null);
-  };
+  const handleMobileMenuClose = () => setMobileMenu(null);
 
   const handleMenuClose = () => {
     setAnchorEl(null);
@@ -102,11 +98,7 @@ const LayoutContent = () => {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="absolute" open={openDrawer}>
-        <Toolbar
-          sx={{
-            pr: '24px', // keep right padding when drawer closed
-          }}
-        >
+        <Toolbar sx={{ pr: '24px' }}>
           <IconButton
             edge="start"
             color="inherit"
@@ -116,19 +108,17 @@ const LayoutContent = () => {
               marginRight: '36px',
               ...(openDrawer && { display: 'none' }),
             }}
-          >
-            <MenuIcon />
-          </IconButton>
+            children={<MenuIcon />}
+          />
+
           <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
             MyTicket
           </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          <SwitchTheme />
+
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <SwitchTheme />
             <IconButton size="large" aria-label="show new notifications" color="inherit">
-              <Badge badgeContent={1} color="error">
-                <Notifications />
-              </Badge>
+              <Badge badgeContent={1} color="error" children={<Notifications />} />
             </IconButton>
             <IconButton
               size="large"
@@ -138,9 +128,8 @@ const LayoutContent = () => {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+              children={<AccountCircle />}
+            />
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -150,9 +139,8 @@ const LayoutContent = () => {
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
-            >
-              <MoreVert />
-            </IconButton>
+              children={<MoreVert />}
+            />
           </Box>
         </Toolbar>
       </AppBar>
@@ -167,12 +155,10 @@ const LayoutContent = () => {
             px: [1],
           }}
         >
-          <IconButton onClick={toggleDrawer}>
-            <ChevronLeft />
-          </IconButton>
+          <IconButton onClick={toggleDrawer} children={<ChevronLeft />} />
         </Toolbar>
         <Divider />
-        <List>{LeftBar}</List>
+        <List children={<LeftBar />} />
       </Drawer>
       <Box
         component="main"
