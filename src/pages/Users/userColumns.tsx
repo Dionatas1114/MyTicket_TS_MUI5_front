@@ -11,14 +11,25 @@ import { headerTableSize } from 'utils/constants';
 
 const { medium, large, extraLarge } = headerTableSize;
 
-export default function getUserColumns(
-  users: User[],
-  rowModesModel: GridRowModesModel,
-  handleSaveClick: (id: GridRowId) => () => void,
-  handleCancelClick: (id: GridRowId) => () => void,
-  handleEditClick: (id: GridRowId) => () => void,
-  handleDeleteClick: (id: GridRowId) => () => void
-) {
+interface DataColumns {
+  users: User[];
+  rowModesModel: GridRowModesModel;
+  handleSaveClick: (id: GridRowId) => () => void;
+  handleCancelClick: (id: GridRowId) => () => void;
+  handleEditClick: (id: GridRowId) => () => void;
+  handleDeleteClick: (id: GridRowId) => () => void;
+}
+
+export default function getUserColumns(dataColumns: DataColumns) {
+  const {
+    users,
+    rowModesModel,
+    handleSaveClick,
+    handleCancelClick,
+    handleEditClick,
+    handleDeleteClick,
+  } = dataColumns;
+
   const editable: BooleanElements = {
     name: true,
     email: true,
@@ -67,7 +78,7 @@ export default function getUserColumns(
     field: 'actions',
     type: 'actions',
     headerName: i18n.t('users.table.actions'),
-    width: headerTableSize.medium,
+    width: medium,
     getActions: ({ id }: User) => {
       const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
 

@@ -38,9 +38,7 @@ export default function UserDataGrid() {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
   };
 
-  const handleDeleteClick = (id: GridRowId) => () => {
-    setUsers(users.filter((row) => row.id !== id));
-  };
+  const handleDeleteClick = (id: GridRowId) => () => setUsers(users.filter((row) => row.id !== id));
 
   const handleCancelClick = (id: GridRowId) => () => {
     setRowModesModel({
@@ -58,14 +56,14 @@ export default function UserDataGrid() {
     return updatedRow;
   };
 
-  const userColumns = getUserColumns(
+  const userColumns = getUserColumns({
     users,
     rowModesModel,
     handleSaveClick,
     handleCancelClick,
     handleEditClick,
-    handleDeleteClick
-  );
+    handleDeleteClick,
+  });
 
   return (
     <DataGrid
