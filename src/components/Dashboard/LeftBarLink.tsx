@@ -22,7 +22,7 @@ const BarLink = (props: BarLinkProps) => {
 
   return (
     <ListItem button component={renderLink}>
-      {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+      {icon ? <ListItemIcon children={icon} /> : null}
       <ListItemText primary={primary} />
     </ListItem>
   );

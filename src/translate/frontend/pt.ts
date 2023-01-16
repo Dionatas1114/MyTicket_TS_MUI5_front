@@ -321,7 +321,7 @@ const messages = {
           search: { title: 'Busca' },
         },
         search: {
-          placeholder: 'Buscar tickets e mensagens',
+          placeholder: 'Tickets e mensagens',
         },
         buttons: {
           showAll: 'Todos',

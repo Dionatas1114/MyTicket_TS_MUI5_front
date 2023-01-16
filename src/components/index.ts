@@ -11,10 +11,12 @@ import CustomTooltip from './Others/CustomTooltip';
 import Copyright from './Others/Copyright';
 import CustomPagination from './Table/CustomPagination';
 import CustomPaper from './Others/CustomPaper';
+import ChatPanel from './ChatPanel';
 
 export {
   Dashboard,
   Calendar,
+  ChatPanel,
   Chat,
   Chart,
   Title,
