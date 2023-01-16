@@ -1,23 +1,25 @@
-import { Container, Grid, Toolbar } from '@mui/material';
-import { Chat, Copyright } from 'components';
+import * as React from 'react';
+import { Grid } from '@mui/material';
+import { ChatPanel, Chat, Copyright, CustomPaper } from 'components';
 
-import { getRandomNumber } from 'utils/functions/RandomNumber';
+import useTickets from 'hooks/useTickets';
 
 const Tickets = () => {
+  const { tickets } = useTickets();
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Toolbar />
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          {/* 1265x560 */}
-          {getRandomNumber(20, 25)}
+    <CustomPaper>
+      <div>
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <ChatPanel />
+          </Grid>
+          {/* <Grid item xs={8} md={3} lg={8}>
+            <Chat />
+          </Grid> */}
         </Grid>
-        <Grid item xs={4} md={3} lg={4}>
-          <Chat />
-        </Grid>
-      </Grid>
-      <Copyright />
-    </Container>
+        <Copyright />
+      </div>
+    </CustomPaper>
   );
 };
 

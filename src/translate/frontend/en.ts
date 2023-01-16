@@ -320,7 +320,7 @@ const messages = {
           search: { title: 'Search' },
         },
         search: {
-          placeholder: 'Search tickets and messages.',
+          placeholder: 'Tickets and messages.',
         },
         buttons: {
           showAll: 'All',

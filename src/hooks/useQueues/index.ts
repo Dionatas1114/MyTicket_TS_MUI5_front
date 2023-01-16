@@ -15,7 +15,6 @@ const useQueues = () => {
       const fetchQueues = async () => {
         try {
           const { data } = await api.get('/queues');
-          console.log('🚀 ~ file: index.ts:18 ~ fetchQueues ~ data', data);
           const queues = data?.map((queue: Queue) => {
             return {
               ...queue,
