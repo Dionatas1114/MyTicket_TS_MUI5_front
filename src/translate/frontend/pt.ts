@@ -302,7 +302,7 @@ const messages = {
       },
       ticketsManager: {
         buttons: {
-          newTicket: 'Novo',
+          newTicket: 'Novo ticket',
         },
       },
       ticketsQueueSelect: {
