@@ -4,6 +4,7 @@ import { Ticket as TicketType } from './Ticket';
 import { Contact as ContactType } from './Contact';
 import { Connection as ConnectionType } from './Connection';
 import { QuickAnswer as QuickAnswerType } from './QuickAnswer';
+import { ChatPanelProps as ChatPanelPropsType } from './ComponentProps';
 
 declare global {
   declare type User = UserType;
@@ -12,6 +13,7 @@ declare global {
   declare type Contact = ContactType;
   declare type Connection = ConnectionType;
   declare type QuickAnswer = QuickAnswerType;
+  declare type ChatPanelProps = ChatPanelPropsType;
 
   interface StringElements {
     [string: string]: string;

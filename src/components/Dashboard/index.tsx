@@ -21,6 +21,7 @@ import {
   AccountCircle,
   Menu as MenuIcon,
   Logout,
+  LensBlur,
 } from '@mui/icons-material';
 
 import LeftBar from './LeftBar';
@@ -110,22 +111,26 @@ const LayoutContent = () => {
             }}
             children={<MenuIcon />}
           />
-
-          <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            MyTicket
-          </Typography>
-
+          <LensBlur sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }} />
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+            children={'MyTicket'}
+          />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <SwitchTheme />
-            <IconButton size="large" aria-label="show new notifications" color="inherit">
-              <Badge badgeContent={1} color="error" children={<Notifications />} />
-            </IconButton>
+            <IconButton
+              size="large"
+              color="inherit"
+              children={<Badge badgeContent={1} color="error" children={<Notifications />} />}
+            />
             <IconButton
               size="large"
               edge="end"
-              aria-label="account of current user"
               aria-controls={menuId}
-              aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
               children={<AccountCircle />}
@@ -134,9 +139,7 @@ const LayoutContent = () => {
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
-              aria-label="show more"
               aria-controls={mobileMenuId}
-              aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
               children={<MoreVert />}
@@ -154,9 +157,8 @@ const LayoutContent = () => {
             justifyContent: 'flex-end',
             px: [1],
           }}
-        >
-          <IconButton onClick={toggleDrawer} children={<ChevronLeft />} />
-        </Toolbar>
+          children={<IconButton onClick={toggleDrawer} children={<ChevronLeft />} />}
+        />
         <Divider />
         <List children={<LeftBar />} />
       </Drawer>

@@ -301,7 +301,7 @@ const messages = {
       },
       ticketsManager: {
         buttons: {
-          newTicket: 'New',
+          newTicket: 'New ticket',
         },
       },
       ticketsQueueSelect: {
@@ -323,7 +323,7 @@ const messages = {
           placeholder: 'Tickets and messages.',
         },
         buttons: {
-          showAll: 'All',
+          showAll: 'Show all',
         },
       },
       transferTicketModal: {
