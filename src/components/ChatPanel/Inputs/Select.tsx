@@ -11,7 +11,7 @@ export default function SelectInput(props: SelectInputProps) {
   const { queues, onChange } = props;
 
   return (
-    <FormControl fullWidth size="small">
+    <FormControl size="small" sx={{ width: 100 }}>
       <InputLabel>{i18n.t('ticketsQueueSelect.placeholder')}</InputLabel>
       <Select value={queues} label={i18n.t('ticketsQueueSelect.placeholder')} onChange={onChange}>
         <MenuItem value={10}>Ten</MenuItem>
