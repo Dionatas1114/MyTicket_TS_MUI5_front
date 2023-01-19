@@ -1,30 +1,22 @@
 import { Grid } from '@mui/material';
 
 import NewTicket from '../Inputs/NewTicket';
-import SwitchInput from '../Inputs/Switch';
-import SelectInput from '../Inputs/Select';
+import SwitchInput, { SwitchInputProps } from '../Inputs/Switch';
+import SelectInput, { SelectInputProps } from '../Inputs/Select';
 
-interface PanelProps {
-  showAllTickets: boolean;
-  setShowAllTickets: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export default function InboxPanel(props: SelectInputProps & SwitchInputProps) {
+  const { showAllTickets, handleShowAllTickets, queues, handleSelectQueue } = props;
 
-export default function InboxPanel({
-  queues,
-  handleChange,
-  showAllTickets,
-  setShowAllTickets,
-}: ChatPanelProps & PanelProps) {
   return (
     <Grid container spacing={2}>
       <Grid item xs>
         <NewTicket />
       </Grid>
       <Grid item xs>
-        <SwitchInput showAllTickets={showAllTickets} setShowAllTickets={setShowAllTickets} />
+        <SwitchInput showAllTickets={showAllTickets} handleShowAllTickets={handleShowAllTickets} />
       </Grid>
       <Grid item xs>
-        <SelectInput queues={queues} onChange={handleChange} />
+        <SelectInput queues={queues} handleSelectQueue={handleSelectQueue} />
       </Grid>
     </Grid>
   );

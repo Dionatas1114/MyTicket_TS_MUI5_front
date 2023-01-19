@@ -2,20 +2,17 @@ import { FormControlLabel, Switch } from '@mui/material';
 
 import { i18n } from 'translate/i18n';
 
-interface PanelProps {
+interface SwitchInputProps {
   showAllTickets: boolean;
-  setShowAllTickets: React.Dispatch<React.SetStateAction<boolean>>;
+  handleShowAllTickets: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
 }
 
-export default function SwitchInput({ showAllTickets, setShowAllTickets }: PanelProps) {
+export type { SwitchInputProps };
+
+export default function SwitchInput({ showAllTickets, handleShowAllTickets }: SwitchInputProps) {
   return (
     <FormControlLabel
-      control={
-        <Switch
-          checked={showAllTickets}
-          onChange={() => setShowAllTickets((prevState: boolean) => !prevState)}
-        />
-      }
+      control={<Switch checked={showAllTickets} onChange={handleShowAllTickets} />}
       label={i18n.t('tickets.buttons.showAll')}
       labelPlacement="start"
     />
