@@ -1,4 +1,3 @@
-import React from 'react';
 import { Paper, SxProps } from '@mui/material';
 
 interface CustomPaperProps {
@@ -6,8 +5,7 @@ interface CustomPaperProps {
   sx?: SxProps;
 }
 
-const CustomPaper = (props: CustomPaperProps) => {
-  const { children, sx } = props;
+const CustomPaper = ({ children, sx }: CustomPaperProps) => {
   return (
     <Paper
       sx={{
@@ -16,9 +14,8 @@ const CustomPaper = (props: CustomPaperProps) => {
         flexDirection: 'column',
         ...sx,
       }}
-    >
-      {children}
-    </Paper>
+      children={children}
+    />
   );
 };
 

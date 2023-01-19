@@ -13,9 +13,7 @@ interface TabPanelProps {
   value: number;
 }
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
+function TabPanel({ children, value, index, ...other }: TabPanelProps) {
   return (
     <div role="tabpanel" hidden={value !== index} {...other}>
       {value === index && <Box sx={{ py: 2 }}>{children}</Box>}
@@ -26,15 +24,23 @@ function TabPanel(props: TabPanelProps) {
 export default function ChatPanel() {
   const [tabPanel, setTabPanel] = React.useState(0);
   const [queues, setQueues] = React.useState('');
+  const [search, setSearch] = React.useState('');
   const [showAllTickets, setShowAllTickets] = React.useState(true);
 
-  const handleChange = (_: React.SyntheticEvent, newValue: number) => setTabPanel(newValue);
+  const handleChangeTabPanel = (_: React.SyntheticEvent, newValue: number) => setTabPanel(newValue);
+
+  const handleShowAllTickets = (_: React.ChangeEvent, checked: boolean) =>
+    setShowAllTickets(!checked);
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setSearch(event.target.value as string);
+
   const handleSelectQueue = (event: SelectChangeEvent) => setQueues(event.target.value as string);
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={tabPanel} onChange={handleChange} variant="fullWidth">
+        <Tabs value={tabPanel} onChange={handleChangeTabPanel} variant="fullWidth">
           <Tab label={i18n.t('tickets.tabs.open.title')} icon={<Inbox />} />
           <Tab label={i18n.t('tickets.tabs.closed.title')} icon={<Solved />} />
           <Tab label={i18n.t('tickets.tabs.search.title')} icon={<Search />} />
@@ -45,10 +51,10 @@ export default function ChatPanel() {
         value={tabPanel}
         children={
           <InboxPanel
-            queues={queues}
-            handleChange={handleSelectQueue}
             showAllTickets={showAllTickets}
-            setShowAllTickets={setShowAllTickets}
+            handleShowAllTickets={handleShowAllTickets}
+            queues={queues}
+            handleSelectQueue={handleSelectQueue}
           />
         }
       />
@@ -57,17 +63,24 @@ export default function ChatPanel() {
         value={tabPanel}
         children={
           <SolvedPanel
-            queues={queues}
-            handleChange={handleSelectQueue}
             showAllTickets={showAllTickets}
-            setShowAllTickets={setShowAllTickets}
+            handleShowAllTickets={handleShowAllTickets}
+            queues={queues}
+            handleSelectQueue={handleSelectQueue}
           />
         }
       />
       <TabPanel
         index={2}
         value={tabPanel}
-        children={<SearchPanel queues={queues} handleChange={handleSelectQueue} />}
+        children={
+          <SearchPanel
+            search={search}
+            handleSearch={handleSearch}
+            queues={queues}
+            handleSelectQueue={handleSelectQueue}
+          />
+        }
       />
       <Divider />
     </Box>

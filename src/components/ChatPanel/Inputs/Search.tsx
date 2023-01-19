@@ -38,13 +38,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchInput() {
+interface SearchInputProps {
+  search: string;
+  handleSearch: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+}
+
+export type { SearchInputProps };
+
+export default function SearchInput({ search: _, handleSearch }: SearchInputProps) {
   return (
     <Search>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
-      <StyledInputBase placeholder={i18n.t('tickets.search.placeholder')} />
+      <StyledInputBase placeholder={i18n.t('tickets.search.placeholder')} onChange={handleSearch} />
     </Search>
   );
 }

@@ -9,9 +9,7 @@ interface BarLinkProps {
   to: string;
 }
 
-const BarLink = (props: BarLinkProps) => {
-  const { icon, primary, to } = props;
-
+const BarLink = ({ icon, primary, to }: BarLinkProps) => {
   const renderLink = React.useMemo(
     () =>
       React.forwardRef<HTMLAnchorElement, Omit<LinkProps, 'to'>>((itemProps, ref) => {
