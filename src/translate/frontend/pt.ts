@@ -304,6 +304,7 @@ const messages = {
         buttons: {
           newTicket: 'Novo ticket',
         },
+        noContacts: 'Sem contatos para exibir',
       },
       ticketsQueueSelect: {
         placeholder: 'Filas',
