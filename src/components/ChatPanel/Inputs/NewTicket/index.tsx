@@ -4,11 +4,36 @@ import { Button } from '@mui/material';
 import { i18n } from 'translate/i18n';
 import NewTicketModal from './NewTicketModal';
 
-export default function NewTicketInput() {
-  const [open, setOpen] = React.useState(false);
+interface NewTicketProps {
+  contact: Contact;
+  contacts: Contact[];
+  setContact: React.Dispatch<React.SetStateAction<Contact>>;
+  loading: boolean;
+  handleLoading: (event: React.ChangeEvent<HTMLInputElement>, loading: boolean) => void;
+}
 
-  const handleClickOpen = () => setOpen(true);
-  const handleCloseModal = () => setOpen(false);
+export type { NewTicketProps };
+
+export default function NewTicketInput(props: NewTicketProps) {
+  const { loading, handleLoading, contacts, contact, setContact } = props;
+
+  const [openModal, setOpenModal] = React.useState(false);
+  const [showContacts, setShowContacts] = React.useState(false);
+
+  const handleClickOpen = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
+  const ticketProps = {
+    openModal,
+    handleCloseModal,
+    loading,
+    handleLoading,
+    showContacts,
+    setShowContacts,
+    contacts,
+    contact,
+    setContact,
+  };
 
   return (
     <React.Fragment>
@@ -18,7 +43,7 @@ export default function NewTicketInput() {
         onClick={handleClickOpen}
         children={i18n.t('ticketsManager.buttons.newTicket')}
       />
-      <NewTicketModal open={open} handleCloseModal={handleCloseModal} />
+      <NewTicketModal {...ticketProps} />
     </React.Fragment>
   );
 }

@@ -1,22 +1,20 @@
 import { Grid } from '@mui/material';
 
-import NewTicket from '../Inputs/NewTicket';
+import NewTicket, { NewTicketProps } from '../Inputs/NewTicket';
 import SwitchInput, { SwitchInputProps } from '../Inputs/Switch';
 import SelectInput, { SelectInputProps } from '../Inputs/Select';
 
-export default function InboxPanel(props: SelectInputProps & SwitchInputProps) {
-  const { showAllTickets, handleShowAllTickets, queues, handleSelectQueue } = props;
-
+export default function InboxPanel(props: SelectInputProps & SwitchInputProps & NewTicketProps) {
   return (
     <Grid container spacing={2}>
       <Grid item xs>
-        <NewTicket />
+        <NewTicket {...props} />
       </Grid>
       <Grid item xs>
-        <SwitchInput showAllTickets={showAllTickets} handleShowAllTickets={handleShowAllTickets} />
+        <SwitchInput {...props} />
       </Grid>
       <Grid item xs>
-        <SelectInput queues={queues} handleSelectQueue={handleSelectQueue} />
+        <SelectInput {...props} />
       </Grid>
     </Grid>
   );

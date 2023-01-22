@@ -16,8 +16,8 @@ export default function getContactColumns(contacts: Contact[]) {
   };
 
   const contactKeys = Object.values(contacts).map((contact) => {
-    const { name, number, email, isGroup, createdAt, updatedAt, actions } = contact;
-    return Object.keys({ name, number, email, isGroup, createdAt, updatedAt, actions });
+    const { name, number, email, isGroup, createdAt, updatedAt } = contact;
+    return Object.keys({ name, number, email, isGroup, createdAt, updatedAt, actions: '' });
   });
 
   const fields = contactKeys[0];
