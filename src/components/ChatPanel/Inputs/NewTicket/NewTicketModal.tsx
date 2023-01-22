@@ -10,7 +10,7 @@ import {
 
 import { i18n } from 'translate/i18n';
 import { NewTicketProps } from '.';
-import AsynchronousInput from './AsynchronousInput';
+import SelectContactInput from './SelectContactInput';
 
 interface NewTicketModalProps {
   openModal: boolean;
@@ -40,7 +40,7 @@ export default function NewTicketModal(props: NewTicketModalProps & NewTicketPro
           noValidate
           component="form"
         >
-          <AsynchronousInput label={i18n.t('newTicketModal.add')} {...props} />
+          <SelectContactInput label={i18n.t('newTicketModal.add')} {...props} />
         </Box>
       </DialogContent>
       <DialogActions>

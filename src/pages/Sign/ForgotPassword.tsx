@@ -121,16 +121,15 @@ const ForgotPassword = () => {
               ),
             }}
           />
-          {/* margin-bottom: -14px */}
           <LoadingButton
             fullWidth
             variant="contained"
             sx={{ mt: 1, mb: 1 }}
             type="submit"
             loading={isSubmitting}
-          >
-            {i18n.t('forgotPassword.buttons.submit')}
-          </LoadingButton>
+            children={i18n.t('forgotPassword.buttons.submit')}
+          />
+
           <Grid container>
             <Grid item xs>
               <ComponentLink to="/" text={i18n.t('forgotPassword.links.login')} />
