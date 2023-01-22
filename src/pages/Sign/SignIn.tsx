@@ -137,9 +137,8 @@ const SignIn = () => {
             sx={{ mt: 1, mb: 1 }}
             type="submit"
             loading={isSubmitting}
-          >
-            {i18n.t('login.buttons.submit')}
-          </LoadingButton>
+            children={i18n.t('login.buttons.submit')}
+          />
 
           <Grid container>
             <Grid item xs>

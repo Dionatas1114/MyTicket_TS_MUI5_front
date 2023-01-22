@@ -5,11 +5,11 @@ import SelectInput, { SelectInputProps } from '../Inputs/Select';
 
 export default function SearchPanel(props: SearchInputProps & SelectInputProps) {
   return (
-    <Grid container spacing={2}>
-      <Grid item md={8}>
+    <Grid container spacing={2} justifyContent="space-evenly" alignItems="center">
+      <Grid item xs>
         <SearchInput {...props} />
       </Grid>
-      <Grid item md={4}>
+      <Grid item>
         <SelectInput {...props} />
       </Grid>
     </Grid>

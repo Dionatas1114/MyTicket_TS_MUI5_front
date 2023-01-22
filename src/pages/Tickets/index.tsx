@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { Grid } from '@mui/material';
-import { ChatPanel, Chat, Copyright, CustomPaper } from 'components';
+import { ChatPanel, Copyright, CustomPaper, Chat } from 'components';
 
-import useTickets from 'hooks/useTickets';
+// import useTickets from 'hooks/useTickets';
 import useContacts from 'hooks/useContacts';
 
 const Tickets = () => {
@@ -12,12 +11,12 @@ const Tickets = () => {
     <CustomPaper>
       <div>
         <Grid container spacing={2}>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12} lg={4}>
             <ChatPanel {...contacts} />
           </Grid>
-          {/* <Grid item xs={8} md={3} lg={8}>
+          <Grid item md={8} xs={12} lg={8}>
             <Chat />
-          </Grid> */}
+          </Grid>
         </Grid>
         <Copyright />
       </div>

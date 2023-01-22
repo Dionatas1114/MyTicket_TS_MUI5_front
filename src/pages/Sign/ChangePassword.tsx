@@ -156,9 +156,8 @@ const ChangePassword = () => {
             sx={{ mt: 1, mb: 1 }}
             type="submit"
             loading={isSubmitting}
-          >
-            {i18n.t('changePassword.buttons.submit')}
-          </LoadingButton>
+            children={i18n.t('changePassword.buttons.submit')}
+          />
 
           <Grid container>
             <Grid item xs>
