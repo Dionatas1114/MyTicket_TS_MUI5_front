@@ -27,7 +27,7 @@ const useTickets = () =>
   {
     const [loading, setLoading] = useState(true);
     const [hasMore, setHasMore] = useState(false);
-    const [tickets, setTickets] = useState([]);
+    const [tickets, setTickets] = useState<Ticket[] | []>([]);
     const { user } = useContext(AuthContext);
 
     useEffect(() => {

@@ -13,7 +13,7 @@ import toastError from 'utils/toastError';
 export default function useContacts() {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(false);
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState<Contact[] | []>([]);
 
   useEffect(() => {
     setLoading(true);

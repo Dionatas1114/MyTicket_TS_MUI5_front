@@ -8,7 +8,7 @@ import ConvertByTimeZone from 'utils/functions/ConvertByTimeZone';
 const useUsers = () => {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(false);
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[] | []>([]);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {

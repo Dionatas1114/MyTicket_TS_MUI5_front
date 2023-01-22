@@ -6,25 +6,30 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField,
 } from '@mui/material';
 
 import { i18n } from 'translate/i18n';
+import { NewTicketProps } from '.';
+import AsynchronousInput from './AsynchronousInput';
 
 interface NewTicketModalProps {
-  open: boolean;
+  openModal: boolean;
+  showContacts: boolean;
+  setShowContacts: React.Dispatch<React.SetStateAction<boolean>>;
   handleCloseModal: () => void;
 }
 
-export default function NewTicketModal({ open, handleCloseModal }: NewTicketModalProps) {
+export type { NewTicketModalProps };
+
+export default function NewTicketModal(props: NewTicketModalProps & NewTicketProps) {
+  const { openModal, handleCloseModal, contact } = props;
+
   return (
-    <Dialog fullWidth maxWidth={'xs'} open={open} onClose={handleCloseModal}>
+    <Dialog fullWidth open={openModal} onClose={handleCloseModal}>
       <DialogTitle children={i18n.t('newTicketModal.title')} />
       <DialogContent>
         <DialogContentText children={i18n.t('newTicketModal.fieldLabel')} />
         <Box
-          noValidate
-          component="form"
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -32,20 +37,17 @@ export default function NewTicketModal({ open, handleCloseModal }: NewTicketModa
             m: 'auto',
             width: 'fit-content',
           }}
-          children={
-            <TextField
-              id="newTicketModal-input"
-              label={i18n.t('newTicketModal.add')}
-              variant="outlined"
-            />
-          }
-        />
+          noValidate
+          component="form"
+        >
+          <AsynchronousInput label={i18n.t('newTicketModal.add')} {...props} />
+        </Box>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCloseModal} children={i18n.t('newTicketModal.buttons.cancel')} />
         <Button
           onClick={handleCloseModal}
-          disabled={true}
+          disabled={!contact}
           children={i18n.t('newTicketModal.buttons.ok')}
         />
       </DialogActions>

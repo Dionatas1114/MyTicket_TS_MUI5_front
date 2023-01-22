@@ -303,6 +303,7 @@ const messages = {
         buttons: {
           newTicket: 'Nuevo ticket',
         },
+        noContacts: 'No hay contactos para mostrar',
       },
       ticketsQueueSelect: {
         placeholder: 'Linhas',
