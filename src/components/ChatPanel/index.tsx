@@ -14,11 +14,16 @@ export default function ChatPanel(contacts: Contact[]) {
   const [queues, setQueues] = React.useState('');
   const [search, setSearch] = React.useState('');
   const [tabPanel, setTabPanel] = React.useState(0);
-  const [loading, setLoading] = React.useState(true);
   const [showAllTickets, setShowAllTickets] = React.useState(true);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [showContacts, setShowContacts] = React.useState(false);
+
+  const handleClickOpen = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+  const handleOpenContacts = () => setShowContacts(true);
+  const handleCloseContacts = () => setShowContacts(false);
 
   const handleChangeTabPanel = (_: React.SyntheticEvent, newValue: number) => setTabPanel(newValue);
-  const handleLoading = (_: React.ChangeEvent, loading: boolean) => setLoading(loading);
   const handleSelectQueue = (event: SelectChangeEvent) => setQueues(event.target.value as string);
 
   const handleShowAllTickets = (_: React.ChangeEvent, checked: boolean) =>
@@ -27,11 +32,23 @@ export default function ChatPanel(contacts: Contact[]) {
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) =>
     setSearch(event.target.value as string);
 
-  const queueProps = { queues, handleSelectQueue };
-  const loadingProps = { loading, handleLoading };
   const searchProps = { search, handleSearch };
-  const ticketProps = { showAllTickets, handleShowAllTickets };
-  const contactProps = { contact, setContact, contacts: Object.values(contacts) };
+  const queueProps = { queues, handleSelectQueue };
+
+  const otherProps = {
+    openModal,
+    showAllTickets,
+    contact,
+    showContacts,
+    contacts: Object.values(contacts),
+    handleClickOpen,
+    handleCloseModal,
+    handleShowAllTickets,
+    setContact,
+    handleOpenContacts,
+    handleCloseContacts,
+    ...queueProps,
+  };
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -42,25 +59,15 @@ export default function ChatPanel(contacts: Contact[]) {
           <Tab label={i18n.t('tickets.tabs.search.title')} icon={<Search />} />
         </Tabs>
       </StyledPanelBox>
-      <TabPanel
-        index={0}
-        value={tabPanel}
-        children={
-          <InboxPanel {...loadingProps} {...queueProps} {...ticketProps} {...contactProps} />
-        }
-      />
-      <TabPanel
-        index={1}
-        value={tabPanel}
-        children={
-          <SolvedPanel {...loadingProps} {...queueProps} {...ticketProps} {...contactProps} />
-        }
-      />
-      <TabPanel
-        index={2}
-        value={tabPanel}
-        children={<SearchPanel {...searchProps} {...queueProps} />}
-      />
+      <TabPanel index={0} value={tabPanel}>
+        <InboxPanel {...otherProps} />
+      </TabPanel>
+      <TabPanel index={1} value={tabPanel}>
+        <SolvedPanel {...otherProps} />
+      </TabPanel>
+      <TabPanel index={2} value={tabPanel}>
+        <SearchPanel {...searchProps} {...queueProps} />
+      </TabPanel>
       <Divider />
     </Box>
   );
