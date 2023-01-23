@@ -19,7 +19,7 @@ import {
   FormControlLabel,
 } from '@mui/material';
 
-import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { Copyright, ComponentLink, TextFieldInput } from 'components';

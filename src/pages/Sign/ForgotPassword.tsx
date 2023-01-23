@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 
-import useAuth from 'hooks/useAuth';
+// import useAuth from 'hooks/useAuth';
 import { i18n } from 'translate/i18n';
 import { marginTop } from 'utils/functions/BrowserInfo';
 import { getRandomNumber } from 'utils/functions/RandomNumber';
@@ -31,7 +31,7 @@ type ForgotPasswordType = {
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
-  const { HandleSignUp } = useAuth();
+  // const { HandleSignUp } = useAuth();
 
   const initialValues: ForgotPasswordType = {
     email: '',
