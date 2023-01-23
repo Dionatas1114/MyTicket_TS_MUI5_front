@@ -12,16 +12,7 @@ import { i18n } from 'translate/i18n';
 import { NewTicketProps } from '.';
 import SelectContactInput from './SelectContactInput';
 
-interface NewTicketModalProps {
-  openModal: boolean;
-  showContacts: boolean;
-  setShowContacts: React.Dispatch<React.SetStateAction<boolean>>;
-  handleCloseModal: () => void;
-}
-
-export type { NewTicketModalProps };
-
-export default function NewTicketModal(props: NewTicketModalProps & NewTicketProps) {
+export default function NewTicketModal(props: NewTicketProps) {
   const { openModal, handleCloseModal, contact } = props;
 
   return (

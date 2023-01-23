@@ -7,43 +7,27 @@ import NewTicketModal from './NewTicketModal';
 interface NewTicketProps {
   contact: Contact;
   contacts: Contact[];
+  openModal: boolean;
+  showContacts: boolean;
   setContact: React.Dispatch<React.SetStateAction<Contact>>;
-  loading: boolean;
-  handleLoading: (event: React.ChangeEvent<HTMLInputElement>, loading: boolean) => void;
+  handleCloseModal: () => void;
+  handleClickOpen: () => void;
+  handleOpenContacts: () => void;
+  handleCloseContacts: () => void;
 }
 
 export type { NewTicketProps };
 
 export default function NewTicketInput(props: NewTicketProps) {
-  const { loading, handleLoading, contacts, contact, setContact } = props;
-
-  const [openModal, setOpenModal] = React.useState(false);
-  const [showContacts, setShowContacts] = React.useState(false);
-
-  const handleClickOpen = () => setOpenModal(true);
-  const handleCloseModal = () => setOpenModal(false);
-
-  const ticketProps = {
-    openModal,
-    handleCloseModal,
-    loading,
-    handleLoading,
-    showContacts,
-    setShowContacts,
-    contacts,
-    contact,
-    setContact,
-  };
-
   return (
     <React.Fragment>
       <Button
         sx={{ width: 125 }}
         variant="outlined"
-        onClick={handleClickOpen}
+        onClick={props.handleClickOpen}
         children={i18n.t('ticketsManager.buttons.newTicket')}
       />
-      <NewTicketModal {...ticketProps} />
+      <NewTicketModal {...props} />
     </React.Fragment>
   );
 }

@@ -1,16 +1,24 @@
 import * as React from 'react';
 import { TextField, Autocomplete, CircularProgress } from '@mui/material';
-import { NewTicketModalProps } from './NewTicketModal';
 import { NewTicketProps } from '.';
 import { i18n } from 'translate/i18n';
 import Sleep from 'utils/functions/Sleep';
 
-interface AsynchronousInputProps extends NewTicketModalProps, NewTicketProps {
+interface AsynchronousInputProps extends NewTicketProps {
   label: string;
 }
 
 export default function AsynchronousInput(props: AsynchronousInputProps) {
-  const { label, showContacts, setShowContacts, contacts, contact, setContact, openModal } = props;
+  const {
+    label,
+    openModal,
+    contact,
+    contacts,
+    showContacts,
+    setContact,
+    handleOpenContacts,
+    handleCloseContacts,
+  } = props;
 
   const loading = showContacts && contacts.length === 0;
 
@@ -27,19 +35,19 @@ export default function AsynchronousInput(props: AsynchronousInputProps) {
     return () => {
       active = false;
     };
-  }, [loading]);
+  }, [loading, contacts, setContact]);
 
   React.useEffect(() => {
     if (!openModal) setContact(null);
-  }, [openModal]);
+  }, [openModal, setContact]);
 
   return (
     <Autocomplete
       id="asynchronous-input"
       sx={{ width: 300 }}
       open={showContacts}
-      onOpen={() => setShowContacts(true)}
-      onClose={() => setShowContacts(false)}
+      onOpen={handleOpenContacts}
+      onClose={handleCloseContacts}
       value={contact}
       onChange={(_: any, newValue: Contact[] | null) => setContact(newValue)}
       isOptionEqualToValue={(option, value) => option.name === value.name}
