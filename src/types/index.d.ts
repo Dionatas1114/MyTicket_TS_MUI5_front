@@ -25,6 +25,10 @@ declare global {
     [string: string]: boolean;
   }
 
+  interface RegExpElements {
+    [string: string]: RegExp;
+  }
+
   namespace React {
     interface DOMAttributes<T> {
       onResize?: ReactEventHandler<T> | undefined;
