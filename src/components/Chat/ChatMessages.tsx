@@ -11,15 +11,24 @@ import {
   Typography,
 } from '@mui/material';
 
-import messages from 'mocks/Messages';
 import { i18n } from 'translate/i18n';
+
+interface Messages {
+  id: number;
+  primary: string;
+  secondary: string;
+  person: string;
+}
 
 interface ChatMessagesProps {
   checked: number[];
   handleSelectMessages: (toggleValue: number) => () => void;
+  messages: Messages[];
 }
 
-const ChatMessages = ({ checked, handleSelectMessages }: ChatMessagesProps) => {
+export type { Messages, ChatMessagesProps };
+
+const ChatMessages = ({ checked, handleSelectMessages, messages }: ChatMessagesProps) => {
   return (
     <Paper elevation={2} square sx={{ pb: '50px' }}>
       <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }}>
