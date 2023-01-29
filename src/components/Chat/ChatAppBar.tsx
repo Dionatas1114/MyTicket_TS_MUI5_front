@@ -17,7 +17,6 @@ const ChatAppBar = (props: SearchInputProps) => {
     <AppBar position="sticky" sx={{ top: 'auto', bottom: 0 }}>
       <Toolbar>
         <SearchInput {...props} />
-
         <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
           <MenuItem onClick={handleClose}>My account</MenuItem>
           <MenuItem onClick={handleClose}>Logout</MenuItem>
