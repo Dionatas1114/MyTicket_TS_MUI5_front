@@ -16,18 +16,17 @@ const OpenIcon = () => {
       ariaLabel="SpeedDial openIcon"
       sx={{
         position: 'absolute',
-        // zIndex: 1,
         top: -270,
         left: 0,
         right: 0,
+        // zIndex: 1,
         // margin: '0 auto',
       }}
       icon={<SpeedDialIcon openIcon={<Edit />} />}
-    >
-      {actions.map((action) => (
+      children={actions.map((action) => (
         <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} />
       ))}
-    </SpeedDial>
+    />
   );
 };
 

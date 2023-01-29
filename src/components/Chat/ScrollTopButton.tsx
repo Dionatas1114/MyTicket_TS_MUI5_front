@@ -77,9 +77,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
         </Box>
       </Container>
       <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUp />
-        </Fab>
+        <Fab color="secondary" size="small" children={<KeyboardArrowUp />} />
       </ScrollTop>
     </React.Fragment>
   );
