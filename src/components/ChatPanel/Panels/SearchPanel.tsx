@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 
-import SearchInput, { SearchInputProps } from '../Inputs/Search';
+import SearchInput, { SearchInputProps } from 'components/Others/Search';
 import SelectInput, { SelectInputProps } from '../Inputs/Select';
 
 export default function SearchPanel(props: SearchInputProps & SelectInputProps) {
