@@ -4,7 +4,7 @@ import {
   Checkbox,
   CssBaseline,
   List,
-  ListItem,
+  ListItemButton,
   ListItemAvatar,
   ListItemText,
   ListSubheader,
@@ -14,13 +14,16 @@ import {
 
 import messages from 'mocks/Messages';
 import ChatAppBar from './ChatAppBar';
-import SearchBar from './SearchBar';
 import { i18n } from 'translate/i18n';
-
-const hideBar = true;
 
 const Chat = () => {
   const [checked, setChecked] = React.useState<number[]>([]);
+  const [search, setSearch] = React.useState('');
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setSearch(event.target.value as string);
+
+  const props = { search, handleSearch };
 
   const handleToggle = (toggleValue: number) => () => {
     const currentIndex = checked.indexOf(toggleValue);
@@ -38,19 +41,19 @@ const Chat = () => {
       <CssBaseline />
       <Paper elevation={2} square sx={{ pb: '50px' }}>
         <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }}>
-          {hideBar ? i18n.t('mainDrawer.listItems.tickets') : <SearchBar />}
+          {i18n.t('mainDrawer.listItems.tickets')}
           <Checkbox edge="end" tabIndex={-1} disableRipple />
         </Typography>
         <List sx={{ mb: 2 }}>
           {messages.map(({ id, primary, secondary, person }) => (
             <React.Fragment key={id}>
               {id === 1 && (
-                <ListSubheader sx={{ bgcolor: 'background.paper' }}>Today</ListSubheader>
+                <ListSubheader sx={{ bgcolor: 'background.paper' }} children={'Today'} />
               )}
               {id === 3 && (
-                <ListSubheader sx={{ bgcolor: 'background.paper' }}>Yesterday</ListSubheader>
+                <ListSubheader sx={{ bgcolor: 'background.paper' }} children={'Yesterday'} />
               )}
-              <ListItem button role={undefined} onClick={handleToggle(id)}>
+              <ListItemButton role={undefined} onClick={handleToggle(id)}>
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" src={person} />
                 </ListItemAvatar>
@@ -62,12 +65,12 @@ const Chat = () => {
                   disableRipple
                   // inputProps={{ 'aria-labelledby': labelId }}
                 />
-              </ListItem>
+              </ListItemButton>
             </React.Fragment>
           ))}
         </List>
       </Paper>
-      <ChatAppBar />
+      <ChatAppBar {...props} />
     </React.Fragment>
   );
 };

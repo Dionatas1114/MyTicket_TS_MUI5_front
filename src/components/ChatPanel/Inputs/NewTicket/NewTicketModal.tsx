@@ -13,7 +13,13 @@ import { NewTicketProps } from '.';
 import SelectContactInput from './SelectContactInput';
 
 export default function NewTicketModal(props: NewTicketProps) {
-  const { openModal, handleCloseModal, contact } = props;
+  const { openModal, handleCloseModal, contact, setContact } = props;
+
+  const handleSetContact = () => {
+    console.log(contact.number, ' salvo');
+    setContact(contact);
+    handleCloseModal();
+  };
 
   return (
     <Dialog fullWidth open={openModal} onClose={handleCloseModal}>
@@ -37,7 +43,7 @@ export default function NewTicketModal(props: NewTicketProps) {
       <DialogActions>
         <Button onClick={handleCloseModal} children={i18n.t('newTicketModal.buttons.cancel')} />
         <Button
-          onClick={handleCloseModal}
+          onClick={handleSetContact}
           disabled={!contact}
           children={i18n.t('newTicketModal.buttons.ok')}
         />
