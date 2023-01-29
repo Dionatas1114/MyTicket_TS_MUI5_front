@@ -1,10 +1,10 @@
 import React from 'react';
 import { CssBaseline } from '@mui/material';
 
-import ChatMessages from './ChatMessages';
+import ChatMessages, { Messages } from './ChatMessages';
 import ChatAppBar from './ChatAppBar';
 
-const Chat = () => {
+const Chat = (messages: Messages[]) => {
   const [checked, setChecked] = React.useState<number[]>([]);
   const [search, setSearch] = React.useState('');
 
@@ -22,7 +22,7 @@ const Chat = () => {
     console.log(newChecked);
   };
 
-  const chatMessagesProps = { checked, handleSelectMessages };
+  const chatMessagesProps = { checked, handleSelectMessages, messages };
   const appBarProps = { search, handleSearch };
 
   return (
