@@ -3,6 +3,7 @@ import { ChatPanel, Copyright, CustomPaper, Chat } from 'components';
 
 // import useTickets from 'hooks/useTickets';
 import useContacts from 'hooks/useContacts';
+import messages from 'mocks/Messages';
 
 const Tickets = () => {
   const { contacts } = useContacts();
@@ -15,7 +16,7 @@ const Tickets = () => {
             <ChatPanel {...contacts} />
           </Grid>
           <Grid item md={8} xs={12} lg={8}>
-            <Chat />
+            <Chat {...messages} />
           </Grid>
         </Grid>
         <Copyright />
