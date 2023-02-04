@@ -21,8 +21,7 @@ const GetLocalStorageTheme = (): PaletteMode => {
   return localStorage?.getItem(storageKey) as PaletteMode;
 };
 
-const marginTop = (): number => {
-  return getScreenHeight() < heightScreenSize.medium ? marginSize.medium : marginSize.large;
-};
+const marginTop = (): number =>
+  getScreenHeight() < heightScreenSize.medium ? marginSize.medium : marginSize.large;
 
 export { getScreenWidth, getScreenHeight, GetBrowserTheme, GetLocalStorageTheme, marginTop };

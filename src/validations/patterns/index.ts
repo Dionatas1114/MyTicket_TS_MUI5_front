@@ -1,5 +1,3 @@
 import patterns from './patterns';
 
-export default function pattern(pattern: string, data: string) {
-  return new RegExp(patterns[pattern]).test(data);
-}
+export const pattern = (pattern: string, data: string) => new RegExp(patterns[pattern]).test(data);
