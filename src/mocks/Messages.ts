@@ -1,4 +1,6 @@
-const messages = [
+import { Messages } from 'components/Chat/ChatMessages';
+
+const messages: Messages[] = [
   {
     id: 1,
     primary: 'Brunch this week?',
