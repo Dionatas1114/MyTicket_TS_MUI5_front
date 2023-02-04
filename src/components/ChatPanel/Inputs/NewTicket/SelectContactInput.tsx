@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TextField, Autocomplete, CircularProgress } from '@mui/material';
 import { NewTicketProps } from '.';
 import { i18n } from 'translate/i18n';
-import Sleep from 'utils/functions/Sleep';
+import { Sleep } from 'utils/functions/Sleep';
 
 interface AsynchronousInputProps extends NewTicketProps {
   label: string;

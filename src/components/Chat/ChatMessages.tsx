@@ -36,7 +36,7 @@ const ChatMessages = ({ checked, handleSelectMessages, messages }: ChatMessagesP
         <Checkbox edge="end" tabIndex={-1} disableRipple />
       </Typography>
       <List sx={{ mb: 2 }}>
-        {messages.map(({ id, primary, secondary, person }) => (
+        {Object.values(messages).map(({ id, primary, secondary, person }) => (
           <React.Fragment key={id}>
             {id === 1 && <ListSubheader sx={{ bgcolor: 'background.paper' }} children={'Today'} />}
             {id === 3 && (
