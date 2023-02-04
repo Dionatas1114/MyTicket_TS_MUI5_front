@@ -13,6 +13,7 @@ const patterns: RegExpElements = {
   phone: /^(\d{2})(\d{2})(\d{4})(\d{4})/,
 };
 
-export default function Masks(input: string, mask: string, extraRule?: string) {
-  return input.replace(patterns.space, '').replace(patterns[mask], masks(mask, extraRule));
-}
+const Masks = (input: string, mask: string, extraRule?: string) =>
+  input.replace(patterns.space, '').replace(patterns[mask], masks(mask, extraRule));
+
+export default Masks;
