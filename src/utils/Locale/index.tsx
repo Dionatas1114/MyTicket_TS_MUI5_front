@@ -4,12 +4,6 @@ interface Languages {
   [language: string]: Locale;
 }
 
-export default function locale(language: string) {
-  const languages: Languages = {
-    enUS,
-    ptBR,
-    es,
-  };
+const languages: Languages = { enUS, ptBR, es };
 
-  return languages[language];
-}
+export const locale = (language: string) => languages[language];
