@@ -2,11 +2,11 @@ import React from 'react';
 import { IconButton, MenuItem } from '@mui/material';
 
 interface MenuItemProps {
-  onClick?: any;
-  icon: any;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+  icon: React.ReactElement;
   content: string | React.ReactElement;
-  color?: any;
-  size?: any;
+  color?: 'error' | 'primary' | 'secondary' | 'info' | 'success' | 'warning';
+  size?: 'small' | 'medium' | 'large';
 }
 
 const CustomMenuItem = ({ onClick, color, size, icon, content }: MenuItemProps) => {
