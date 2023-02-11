@@ -2,7 +2,8 @@ import React from 'react';
 import { CssBaseline } from '@mui/material';
 
 import ChatMessages, { Messages } from './ChatMessages';
-import ChatAppBar from './ChatAppBar';
+import ChatAppBar from './ChatInputFooter';
+import ChatHeader from './ChatHeader';
 
 const Chat = (messages: Messages[]) => {
   const [checked, setChecked] = React.useState<number[]>([]);
@@ -28,6 +29,7 @@ const Chat = (messages: Messages[]) => {
   return (
     <React.Fragment>
       <CssBaseline />
+      <ChatHeader />
       <ChatMessages {...chatMessagesProps} />
       <ChatAppBar {...appBarProps} />
     </React.Fragment>

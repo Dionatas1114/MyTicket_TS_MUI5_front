@@ -14,7 +14,7 @@ const StyledPanelBox = styled(Box)(({ theme }) => ({
 const TabPanel = ({ children, value, index, ...rest }: TabPanelProps) => {
   return (
     <div role="tabpanel" hidden={value !== index} {...rest}>
-      {value === index && <Box sx={{ p: 2 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 2 }} children={children} />}
     </div>
   );
 };

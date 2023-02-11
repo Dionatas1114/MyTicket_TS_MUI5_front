@@ -1,32 +1,14 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import {
-  Box,
-  List,
-  Menu,
-  Badge,
-  Toolbar,
-  Divider,
-  Typography,
-  IconButton,
-  CssBaseline,
-  PopoverOrigin,
-} from '@mui/material';
+import { Box, List, Menu, Toolbar, Divider, IconButton, CssBaseline } from '@mui/material';
+import { ChevronLeft, Notifications, AccountCircle as Account, Logout } from '@mui/icons-material';
 
-import {
-  MoreVert,
-  ChevronLeft,
-  Notifications,
-  AccountCircle,
-  Menu as MenuIcon,
-  Logout,
-  LensBlur,
-} from '@mui/icons-material';
+import { CustomMenuItem as MenuItem } from '..';
 
+import { DashHeader } from './Header';
 import LeftBar from './LeftBar';
-import { AppBar, Drawer } from './styles';
-import { CustomMenuItem, SwitchTheme } from '..';
+import { Drawer } from './styles';
 
 const LayoutContent = () => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -38,9 +20,8 @@ const LayoutContent = () => {
 
   const toggleDrawer = () => setOpenDrawer(!openDrawer);
 
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget);
-  };
 
   const handleMobileMenuClose = () => setMobileMenu(null);
 
@@ -49,104 +30,43 @@ const LayoutContent = () => {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
     setMobileMenu(event.currentTarget);
-  };
 
-  const menuStyle: PopoverOrigin = { vertical: 'top', horizontal: 'center' };
-  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={menuStyle}
-      id={menuId}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       keepMounted
-      transformOrigin={menuStyle}
+      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <CustomMenuItem
-        onClick={handleMenuClose}
-        size="medium"
-        icon={<AccountCircle />}
-        content="Profile"
-      />
-      <CustomMenuItem onClick={handleMenuClose} size="medium" icon={<Logout />} content="Logout" />
+      <MenuItem size="medium" content="Profile" icon={<Account />} onClick={handleMenuClose} />
+      <MenuItem size="medium" content="Logout" icon={<Logout />} onClick={handleMenuClose} />
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMenu}
-      anchorOrigin={menuStyle}
-      id={mobileMenuId}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       keepMounted
-      transformOrigin={menuStyle}
+      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <CustomMenuItem icon={<Notifications />} content={<p>Notifications</p>} />
-      <CustomMenuItem
-        onClick={handleProfileMenuOpen}
-        icon={<AccountCircle />}
-        content={<p>Profile</p>}
-      />
+      <MenuItem content={<p>Notifications</p>} icon={<Notifications />} />
+      <MenuItem content={<p>Profile</p>} icon={<Account />} onClick={handleProfileMenuOpen} />
     </Menu>
   );
+
+  const props = { openDrawer, toggleDrawer, handleProfileMenuOpen, handleMobileMenuOpen };
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="absolute" open={openDrawer}>
-        <Toolbar sx={{ pr: '24px' }}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer}
-            sx={{
-              marginRight: '36px',
-              ...(openDrawer && { display: 'none' }),
-            }}
-            children={<MenuIcon />}
-          />
-          <LensBlur sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }} />
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            sx={{ flexGrow: 1 }}
-            children={'MyTicket'}
-          />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <SwitchTheme />
-            <IconButton
-              size="large"
-              color="inherit"
-              children={<Badge badgeContent={1} color="error" children={<Notifications />} />}
-            />
-            <IconButton
-              size="large"
-              edge="end"
-              aria-controls={menuId}
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-              children={<AccountCircle />}
-            />
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-controls={mobileMenuId}
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-              children={<MoreVert />}
-            />
-          </Box>
-        </Toolbar>
-      </AppBar>
+      <DashHeader {...props} />
       {renderMobileMenu}
       {renderMenu}
       <Drawer variant="permanent" open={openDrawer}>

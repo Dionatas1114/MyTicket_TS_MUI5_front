@@ -1,5 +1,6 @@
 import { Container, Grid } from '@mui/material';
 import { Chart, Calendar, Copyright } from 'components';
+import MediaControlCard from 'components/Card';
 
 const MainPage = () => {
   return (
@@ -11,6 +12,9 @@ const MainPage = () => {
         </Grid>
         <Grid item md={4} lg={4}>
           <Calendar />
+        </Grid>
+        <Grid item md={4} lg={4}>
+          <MediaControlCard />
         </Grid>
         {/* Recent Orders */}
         {/* <Grid item xs={12}>
