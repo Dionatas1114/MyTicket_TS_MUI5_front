@@ -1,3 +1,4 @@
+import React from 'react';
 import { Toolbar, IconButton, Typography, Box, Badge } from '@mui/material';
 import {
   LensBlur,
@@ -6,11 +7,18 @@ import {
   Menu as MenuIcon,
   AccountCircle as Account,
 } from '@mui/icons-material';
-import { CustomMenuItem as MenuItem, SwitchTheme } from '..';
 
+import { CustomMenuItem as MenuItem, SwitchTheme } from '..';
 import { AppBar } from './styles';
 
-export const DashHeader = (props: any) => {
+interface DashHeaderProps {
+  openDrawer?: boolean;
+  toggleDrawer?: React.MouseEventHandler<HTMLElement>;
+  handleProfileMenuOpen?: React.MouseEventHandler<HTMLElement>;
+  handleMobileMenuOpen?: React.MouseEventHandler<HTMLElement>;
+}
+
+export const DashHeader = (props: DashHeaderProps) => {
   const { openDrawer, toggleDrawer, handleProfileMenuOpen, handleMobileMenuOpen } = props;
   return (
     <AppBar position="absolute" open={openDrawer}>

@@ -3,7 +3,7 @@ import { i18n } from 'translate/i18n';
 
 const { medium, large, extraLarge } = headerTableSize;
 
-export default function getContactColumns(connections: any[]) {
+export default function getContactColumns(connections: Contact[]) {
   const widths: NumberElements = {
     name: extraLarge,
     status: medium,
@@ -26,7 +26,6 @@ export default function getContactColumns(connections: any[]) {
     const column = {
       field: fields[i] || '',
       width: widths[fields[i]] || 0,
-      // headerName: fields[i] || '',
       headerName: i18n.t(`connections.table.${fields[i]}`) || '',
     };
 

@@ -49,7 +49,7 @@ export default function AsynchronousInput(props: AsynchronousInputProps) {
       onOpen={handleOpenContacts}
       onClose={handleCloseContacts}
       value={contact}
-      onChange={(_: any, newValue: Contact[] | null) => setContact(newValue)}
+      onChange={(_: React.SyntheticEvent, newValue: Contact[] | null) => setContact(newValue)}
       isOptionEqualToValue={(option, value) => option.name === value.name}
       getOptionLabel={(option) => option.name}
       options={contacts}

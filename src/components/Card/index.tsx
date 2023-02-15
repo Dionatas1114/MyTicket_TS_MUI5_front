@@ -5,6 +5,9 @@ import { SkipPrevious, PlayArrow, SkipNext } from '@mui/icons-material';
 export default function MediaControlCard() {
   const theme = useTheme();
 
+  const avatarNumber = 3;
+  const src = `https://material-ui.com/static/images/avatar/${avatarNumber}.jpg`;
+
   return (
     <Card sx={{ display: 'flex' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -31,7 +34,7 @@ export default function MediaControlCard() {
       <CardMedia
         component="img"
         sx={{ width: 151 }}
-        image="/static/images/cards/live-from-space.jpg"
+        image={src}
         alt="Live from space album cover"
       />
     </Card>
