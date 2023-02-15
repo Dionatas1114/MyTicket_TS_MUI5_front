@@ -2,7 +2,7 @@ import React from 'react';
 import { CssBaseline } from '@mui/material';
 
 import ChatMessages, { Messages } from './ChatMessages';
-import ChatAppBar from './ChatInputFooter';
+import ChatInputFooter from './ChatInputFooter';
 import ChatHeader from './ChatHeader';
 
 const Chat = (messages: Messages[]) => {
@@ -24,14 +24,14 @@ const Chat = (messages: Messages[]) => {
   };
 
   const chatMessagesProps = { checked, handleSelectMessages, messages };
-  const appBarProps = { search, handleSearch };
+  const inputFooterProps = { search, handleSearch };
 
   return (
     <React.Fragment>
       <CssBaseline />
       <ChatHeader />
       <ChatMessages {...chatMessagesProps} />
-      <ChatAppBar {...appBarProps} />
+      <ChatInputFooter {...inputFooterProps} />
     </React.Fragment>
   );
 };
