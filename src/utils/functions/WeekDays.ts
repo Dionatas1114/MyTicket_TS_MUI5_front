@@ -1,19 +1,13 @@
-interface Options {
-  weekday?: 'long' | 'short' | 'narrow';
-  timeZone?: string;
-}
-
-const timeZone = 'America/Sao_Paulo';
-const language = 'pt-BR';
+const languageBR = 'pt-BR';
+const timeZoneBR = 'America/Sao_Paulo';
 
 const date = new Date();
 
-const options: Options = {
-  weekday: 'long',
-  timeZone,
-};
-
-const getToday = new Intl.DateTimeFormat(language, options).format(date);
+const getToday = (language = languageBR, timeZone = timeZoneBR) =>
+  new Intl.DateTimeFormat(language, {
+    weekday: 'long',
+    timeZone,
+  }).format(date);
 
 const days = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
 
