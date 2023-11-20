@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import toastError from 'utils/toastError';
 
-export function useLocalStorage({key, initialValue} : StringElements) {
+export function useLocalStorage(key: string, initialValue: string) {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = localStorage.getItem(key);

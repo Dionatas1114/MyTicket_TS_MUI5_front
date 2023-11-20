@@ -19,10 +19,7 @@ function AppThemeProvider({ children }: Props): React.ReactElement {
 
   const [mode, setMode] = React.useState<PaletteMode>(localStorageTheme);
 
-  const theme = React.useMemo(
-    () => createTheme(mode === 'light' ? themes.lightTheme : themes.darkTheme),
-    [mode]
-  );
+  const theme = React.useMemo(() => createTheme(themes[mode]), [mode]);
 
   const colorMode = React.useMemo(
     () => ({
@@ -32,6 +29,8 @@ function AppThemeProvider({ children }: Props): React.ReactElement {
     }),
     []
   );
+
+  localStorage.setItem('theme', mode);
 
   return (
     <ColorContext.Provider value={colorMode}>
