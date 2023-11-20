@@ -1,12 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { Link as CustomLink } from '@mui/material';
-
-interface ComponentLinkProps {
-  color?: string;
-  href?: string;
-  text: string;
-  to: string;
-}
+import { Link as MuiLink } from '@mui/material';
 
 interface LinkProps {
   color?: string;
@@ -14,29 +7,32 @@ interface LinkProps {
   text: string;
 }
 
+interface ComponentLinkProps extends LinkProps {
+  to: string;
+}
+
 const ComponentLink = (props: ComponentLinkProps) => {
-  const { color, href, text, to } = props;
+  const { color, text, to } = props;
   return (
-    <CustomLink
+    <MuiLink
       {...props}
       component={RouterLink}
       underline="hover"
       variant="body2"
-      href={href}
       color={color}
       to={to}
     >
       {text}
-    </CustomLink>
+    </MuiLink>
   );
 };
 
 const HrefLink = (props: LinkProps) => {
   const { color, href, text } = props;
   return (
-    <CustomLink variant="body2" underline="none" href={href} color={color} {...props}>
+    <MuiLink variant="body2" underline="none" href={href} color={color} {...props}>
       {text}
-    </CustomLink>
+    </MuiLink>
   );
 };
 
