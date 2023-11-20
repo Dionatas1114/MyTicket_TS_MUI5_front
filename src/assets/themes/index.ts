@@ -5,12 +5,12 @@ interface Themes {
 }
 
 const themes: Themes = {
-  darkTheme: {
+  dark: {
     palette: {
       mode: 'dark',
     },
   },
-  lightTheme: {
+  light: {
     palette: {
       mode: 'light',
     },
