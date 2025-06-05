@@ -1,5 +1,7 @@
 # MyTicket_TS_MUI5_front
 
+    Requisitos: Docker e Node = 18.18.0
+
 Git remove local branches not on remote:
 
 ```bash
