@@ -17,7 +17,7 @@ const useConnections = () => {
     setLoading(true);
     const fetchSession = async () => {
       try {
-        const { data } = await api.get('/whatsapp');
+        const { data } = await api.get<any>('/whatsapp');
         const connections = data?.connections?.map((connection: Connection) => {
           return {
             ...connection,

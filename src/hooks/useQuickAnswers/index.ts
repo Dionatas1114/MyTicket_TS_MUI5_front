@@ -14,7 +14,7 @@ const useQuickAnswers = () => {
     const delayDebounceFn = setTimeout(() => {
       const fetchQuickAnswers = async () => {
         try {
-          const { data } = await api.get('/quickAnswers');
+          const { data } = await api.get<any>('/quickAnswers');
           const quickAnswers = data?.quickAnswers?.map((quickAnswer: QuickAnswer) => {
             return {
               ...quickAnswer,

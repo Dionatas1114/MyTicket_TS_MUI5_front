@@ -14,7 +14,7 @@ const useQueues = () => {
     const delayDebounceFn = setTimeout(() => {
       const fetchQueues = async () => {
         try {
-          const { data } = await api.get('/queues');
+          const { data } = await api.get<any>('/queues');
           const queues = data?.map((queue: Queue) => {
             return {
               ...queue,

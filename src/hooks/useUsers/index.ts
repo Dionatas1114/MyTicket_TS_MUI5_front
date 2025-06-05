@@ -16,7 +16,7 @@ const useUsers = () => {
     const delayDebounceFn = setTimeout(() => {
       const fetchUsers = async () => {
         try {
-          const { data } = await api.get('/users');
+          const { data } = await api.get<any>('/users');
           const users = data?.users?.map((user: User) => {
             return {
               ...user,

@@ -20,7 +20,7 @@ export default function useContacts() {
     const delayDebounceFn = setTimeout(() => {
       const fetchTickets = async () => {
         try {
-          const { data } = await api.get('/contacts');
+          const { data } = await api.get<any>('/contacts');
           const contacts = data?.contacts?.map((contact: Contact) => {
             return {
               ...contact,

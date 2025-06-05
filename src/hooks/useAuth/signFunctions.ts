@@ -34,7 +34,7 @@ const HandleLogin = async (userData: SignInType) => {
     const {
       data: { token, user },
       status,
-    } = await api.post('/auth/login', userData);
+    } = await api.post<any>('/auth/login', userData);
     console.log({ token, user, status });
   } catch (err) {
     toastError(err);

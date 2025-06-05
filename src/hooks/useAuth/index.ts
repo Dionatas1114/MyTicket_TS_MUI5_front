@@ -32,7 +32,7 @@ const useAuth = () => {
       if (error?.response?.status === 403 && !originalRequest._retry) {
         originalRequest._retry = true;
 
-        const { data } = await api.post('/auth/refresh_token');
+        const { data } = await api.post<any>('/auth/refresh_token');
         if (data) {
           localStorage.setItem('token', JSON.stringify(data?.token));
           api.defaults.headers.common['Authorization'] = `Bearer ${data?.token}`;
