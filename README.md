@@ -11,3 +11,6 @@ git remote prune origin
 ```bash
 git branch | grep -v "master" | grep -v "develop" | xargs git branch -D
 ```
+
+
+//! Projeto descontinuado
